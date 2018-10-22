@@ -1,0 +1,306 @@
+html,body,p,form,ul,hr,h1,h2,h3,h4,h5,h6{margin:0;padding:0}
+body,a,li,input,button,textarea{font-family:"microsoft yahei" !important}
+a{text-decoration:none}
+li{list-style:none}
+img{border:0 none}
+textarea{line-height:20px}
+input,button,textarea{font-size:14px;outline:0 none;margin:0;padding:0}
+input::-ms-clear{display:none}
+body{line-height:20px;font-size:14px;background-color:#f5f5f5}
+textarea{resize:none}
+html,body{height:100%}
+/****************************************header*****************************************/
+div{display: block;}
+.header{position:relative;min-width:1002px;font:14px "Microsoft YaHei";z-index:998}
+.header p,.header ul{margin:0;padding:0}
+.header .in{width:1002px;margin:0 auto}
+.header .bar{height:32px;line-height:32px;font-size:14px;background-color:#ff6000;z-index:2}
+.header .bar a{font-size:14px;color: #fff}
+.header .bar,.header .nag,.header .snag{position:relative;z-index:1}
+.header .left{float:left;width:106px;height:32px;color:#fff}
+.header .right{float:right;height:32px;margin-left:15px}
+.header .left:hover{background-color:#ea5800}
+.header .right a:hover {text-decoration:underline}
+.header .right .l{float:none;margin:0 15px;color:#fff}
+.header .uer .op{float:left;width:140px;height:32px;font-size:14px;color:#fff;text-align:center;background-color:#ffa000}
+.header .uer .op a{color:#fff}
+.header .uer .op a:hover{color:#fff !important;text-decoration:underline}
+.header .uer{position:relative;width:140px;float:right}
+/*************************************招聘信息*****************************************/
+.wrap {
+    width: 980px;
+}
+.wrap, .container {
+    margin-right: auto;
+    margin-left: auto;
+    *zoom: 1;
+}
+.wrap:before, .wrap:after, .container:before, .container:after {
+    display: table;
+    line-height: 0;
+    content: "";
+}
+.wrap:after, .container:after {
+    clear: both;
+}
+
+.job-content {
+    width: 720px;
+    float: left;
+}
+.job-content .sojob-result {
+    position: relative;
+}
+.job-content .sojob-result .sojob-result-number {
+    line-height: 30px;
+    color: #999;
+}
+.job-content .sojob-result .sojob-result-number span {
+    color: #f50;
+}
+
+ul.sojob-list {
+    margin-bottom: 10px;
+}
+ul.sojob-list li {
+    overflow: auto;
+    text-align: -webkit-match-parent;
+    display: list-item;
+    position: relative;
+    margin-top: 12px;
+    border: 1px solid #e5e5e5;
+}
+ul.sojob-list li.downgrade-search {
+    padding: 0 20px;
+    height: 40px;
+    background-color: #f0f0f0;
+    border: 1px solid #d9d9d9;
+    margin-bottom: -12px;
+    border-bottom: 0;
+    font-size: 14px;
+    line-height: 40px;
+}
+ul.sojob-list li.downgrade-search span {
+    color: #999;
+    text-decoration: line-through;
+}
+#sojob ul.sojob-list li.downgrade-search em {
+    color: #f50;
+}
+#sojob ul.sojob-list li:first-child {
+    margin-top: 0;
+}
+#sojob ul.sojob-list li a {
+    text-decoration: none;
+}
+#sojob ul.sojob-list li .icon {
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 0;
+    height: 0;
+    border-top: 42px solid #ff6363;
+    border-left: 42px solid transparent;
+    cursor: pointer;
+}
+#sojob ul.sojob-list li .icon b {
+    position: absolute;
+    top: -41px;
+    left: -19px;
+    font-size: 14px;
+    font-family: 'Microsoft Yahei';
+    color: #fff;
+}
+#sojob ul.sojob-list li .icon-yellow-triangle {
+    border-top-color: #fec144;
+}
+#sojob ul.sojob-list li .icon-title.icon-yellow-triangle {
+    background-color: #fec144;
+}
+#sojob ul.sojob-list li .icon-blue-triangle {
+    border-top-color: #2c99fe;
+}
+#sojob ul.sojob-list li .icon-title.icon-blue-triangle {
+    background-color: #2c99fe;
+}
+#sojob ul.sojob-list li .icon-orange-triangle {
+    border-top-color: #ff7e00;
+}
+#sojob ul.sojob-list li .icon-title.icon-orange-triangle {
+    background-color: #ff7e00;
+}
+#sojob ul.sojob-list li .sojob-item-main {
+    padding: 14px 18px 14px 21px;
+}
+#sojob ul.sojob-list li .sojob-item-main .job-info {
+    text-decoration: none;
+    color: #666;
+    float: left;
+}
+#sojob ul.sojob-list li .sojob-item-main .job-info .job-name:hover, #sojob ul.sojob-list li .sojob-item-main a .company-name:hover {
+    color: #ff7f00;
+}
+#sojob ul.sojob-list li .sojob-item-main .job-info.nohover, #sojob ul.sojob-list li .sojob-item-main .nohover span {
+    cursor: text;
+}
+#sojob ul.sojob-list li .sojob-item-main .job-info.nohover .company-name:hover {
+    color: #666;
+}
+#sojob ul.sojob-list li .sojob-item-main .job-info p {
+    margin-top: 12px;
+}
+#sojob ul.sojob-list li .sojob-item-main .job-info .job-name, #sojob ul.sojob-list li .sojob-item-main .job-info h3 {
+    display: inline-block;
+    *display: inline;
+    *zoom: 1;
+    line-height: 24px;
+    margin: 0;
+    padding-right: 70px;
+    font-size: 18px;
+    font-family: 'Microsoft Yahei';
+    font-weight: normal;
+    color: #3d9ccc;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+#sojob ul.sojob-list li .sojob-item-main .job-info .job-name a, #sojob ul.sojob-list li .sojob-item-main .job-info h3 a {
+    color: #3d9ccc;
+}
+#sojob ul.sojob-list li .sojob-item-main .job-info .job-name a:hover, #sojob ul.sojob-list li .sojob-item-main .job-info h3 a:hover {
+    color: #f60;
+}
+#sojob ul.sojob-list li .sojob-item-main .job-info .job-name em, #sojob ul.sojob-list li .sojob-item-main .job-info h3 em {
+    margin: -3px 0 0 5px;
+    vertical-align: middle;
+    font-size: 14px;
+    font-family: 'simsun';
+    color: #666;
+}
+#sojob ul.sojob-list li .sojob-item-main .job-info .condition {
+    width: 410px;
+    height: 20px;
+    margin-top: 14px;
+    font-family: 'Microsoft Yahei';
+    font-size: 16px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+#sojob ul.sojob-list li .sojob-item-main .job-info .condition a.area {
+    cursor: default;
+    color: #666;
+    display: inline;
+    padding: 0 10px;
+    border-left: 1px solid #ccc;
+}
+#sojob ul.sojob-list li .sojob-item-main .job-info .condition span.area {
+    cursor: default;
+    color: #666;
+}
+#sojob ul.sojob-list li .sojob-item-main .job-info .condition > p {
+    margin-top: 0;
+    width: 1000px;
+    height: 20px;
+}
+#sojob ul.sojob-list li .sojob-item-main .job-info .time-info {
+    color: #999;
+}
+#sojob ul.sojob-list li .sojob-item-main .job-info .time-info time {
+    padding-right: 12px;
+}
+#sojob ul.sojob-list li .sojob-item-main .job-info .time-info span {
+    padding-left: 12px;
+    border-left: 1px solid #ccc;
+}
+#sojob ul.sojob-list li .sojob-item-main .job-info .time-info span.feelback {
+    padding: 2px 5px;
+    border: 1px solid #fea9a9;
+    border-radius: 3px;
+    color: #fd5353;
+}
+#sojob ul.sojob-list li .sojob-item-main .job-info h3 a {
+    text-decoration: none;
+    display: inline-block;
+    *display: inline;
+    *zoom: 1;
+    max-width: 330px;
+    vertical-align: middle;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+#sojob ul.sojob-list li .sojob-item-main .company-info {
+    float: right;
+    padding: 0 5px 3px 20px;
+    width: 230px;
+    font-size: 14px;
+    min-height: 90px;
+    border-left: 1px dotted #8197a2;
+    font-family: 'Microsoft Yahei';
+}
+#sojob ul.sojob-list li .sojob-item-main .company-info .company-name {
+    margin-top: 3px;
+    height: 18px;
+    font-size: 14px;
+    color: #333;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+#sojob ul.sojob-list li .sojob-item-main .company-info .company-name a {
+    color: #666;
+}
+#sojob ul.sojob-list li .sojob-item-main .company-info .company-name a:hover {
+    color: #f60;
+}
+#sojob ul.sojob-list li .sojob-item-main .nohover .company-name a:hover {
+    color: #666;
+}
+#sojob ul.sojob-list li .sojob-item-main .company-info .honesty-tips {
+    width: 250px;
+    height: 26px;
+    overflow: hidden;
+    margin-top: 9px;
+    color: #999;
+    font-size: 12px;
+}
+#sojob ul.sojob-list li .sojob-item-main .company-info .field-financing {
+    height: 20px;
+    margin-top: 20px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    color: #666;
+}
+#sojob ul.sojob-list li .sojob-item-main .company-info .field-financing .industry-link {
+    color: #666;
+}
+#sojob ul.sojob-list li .sojob-item-main .company-info .field-financing span {
+    float: left;
+}
+#sojob ul.sojob-list li .sojob-item-main .company-info .temptation {
+    height: 30px;
+    overflow: hidden;
+    margin-top: 9px;
+    color: #666;
+}
+#sojob ul.sojob-list li .sojob-item-main .company-info .temptation span {
+    float: left;
+    padding: 2px 10px;
+    border: 1px solid #e1f2fa;
+    margin-right: 6px;
+    margin-bottom: 10px;
+    font-size: 12px;
+    background-color: #edf9ff;
+    color: #3d9ccc;
+}
+#sojob ul.sojob-list li .sojob-item-main p span {
+    display: inline;
+    padding: 0 10px;
+    border-left: 1px solid #ccc;
+}
+#sojob ul.sojob-list li .sojob-item-main p span:first-child {
+    padding-left: 0;
+    border: 0;
+}

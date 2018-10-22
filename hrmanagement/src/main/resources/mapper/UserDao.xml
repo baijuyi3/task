@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jy.dao.UserDao">
+    <resultMap id="user1" type="com.jy.model.User">
+        <id property="u_id" column="u_id" />
+        <result property="u_name" column="u_name" />
+        <result property="u_name" column="u_pass" />
+        <result property="u_sex" column="u_sex" />
+    </resultMap>
+
+
+    <insert id="addUser" >
+        insert into t_user(u_id,u_name,u_pass,u_sex) values(USER_SEQ.nextval,#{u_name},#{u_pass},#{u_sex})
+    </insert>
+
+    <select id="getUserByNameAndPass" parameterType="com.jy.model.User" resultMap="user1">
+        SELECT u_id ,u_name ,u_pass ,u_sex from T_USER
+        <where>
+            <if test="u_name!=null">
+                AND u_name=#{u_name}
+            </if>
+            <if test="u_pass!=null">
+                AND u_pass=#{u_pass}
+            </if>
+        </where>
+    </select>
+</mapper>

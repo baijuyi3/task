@@ -1,0 +1,27 @@
+body{font:12px/180% Arial,Helvetica,Verdana;color:#5a5a5a; margin:0; background:#FFF;}
+body.login{ background:url(../img/login_bgx.gif);}
+.login_main{ width:290px; margin:0 auto; height:375px; margin-top:40px; /*position: absolute;left:50%;top:50%;margin-left:-202px;margin-top:-188px;*/}
+.login_logo{text-align:center;margin-bottom:25px;}
+.login_border{ background: url(../img/login_m_bg.png) no-repeat;height:302px; overflow:hidden;background-size: 100% 100%;}
+.login_padding{ padding:28px 47px 20px 47px ;}
+.login_border h2{ color:#4f5d80; text-transform:uppercase; font-size:12px; font-weight:normal; margin-bottom:6px;}
+.login_border input{ width:195px; height:26px; border:1px solid #cad2db;  padding:0 5px; -moz-border-radius:5px; -webkit-border-radius:5px; border-radius:5px; line-height:36px; margin-bottom:6px; font-size:14px; color:#717171; font-family:Arial;}
+.radio input{width: 10%;  height:12px;}
+.button {
+    display: inline-block;
+    margin-left: 14%;
+    padding: .3em .5em;
+    background-image: linear-gradient(skyblue,blue);
+    border: 1px solid rgba(0,0,0,.2);
+    border-radius: .3em;
+    box-shadow: 0 1px white inset;
+    text-align: center;
+    text-shadow: 0 1px 1px black;
+    color:white;
+    font-weight: bold;
+}
+.button:active{
+    box-shadow: .05em .1em .2em rgba(0,0,0,.6) inset;
+    border-color: rgba(0,0,0,.3);
+    background: blue;
+}

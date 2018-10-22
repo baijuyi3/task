@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.jy.dao.ResumeDao">
+    <insert id="saveResume">
+        INSERT into T_RESUME VALUES (RESUME_SEQ.nextval,#{name},#{birth},#{phone},#{mail}
+        ,#{startwork},#{state},#{live},#{salary},#{aim_salary},#{aim_workspace},#{aim_work},#{aim_profession}
+        ,#{aim_introduce},#{aim_worktime},#{aim_workstyle},#{headpicture},#{uid})
+    </insert>
+    <update id="updateResume">
+        UPDATE T_RESUME SET R_NAME=#{name},
+        r_birth=#{birth},
+        r_phone=#{phone},
+        r_mail=#{mail},
+        r_startwork=#{startwork},
+        r_state=#{state},
+        r_live=#{live},
+        r_salary=#{salary},
+        r_aim_salary=#{aim_salary},
+        r_aim_workspace=#{aim_workspace},
+        r_aim_work=#{aim_work},
+        r_aim_profession=#{aim_profession},
+        r_aim_introduce=#{aim_introduce},
+        r_aim_worktime=#{aim_worktime},
+        r_aim_workstyle=#{aim_workstyle},
+        r_headpicture=#{headpicture}
+        where R_id=#{id}
+    </update>
+    <delete id="delResume">
+        DELETE FROM T_RESUME WHERE r_id=#{id};
+    </delete>
+    <select id="getResumeByUid" resultMap="resume1">
+        SELECT * FROM T_RESUME where  R_UID=#{uid}
+    </select>
+    <select id="getResumeById" resultMap="resume1">
+        SELECT * FROM T_RESUME where  R_ID=#{id}
+    </select>
+
+    <resultMap id="resume1" type="com.jy.model.Resume">
+        <id column="r_id" property="id"/>
+        <result column="r_name" property="name"/>
+        <result column="r_birth" property="birth"/>
+        <result column="r_phone" property="phone"/>
+        <result column="r_mail" property="mail"/>
+        <result column="r_startwork" property="startwork"/>
+        <result column="r_state" property="state"/>
+        <result column="r_live" property="live"/>
+        <result column="r_salary" property="salary"/>
+        <result column="r_aim_salary" property="aim_salary"/>
+        <result column="r_aim_workspace" property="aim_workspace"/>
+        <result column="r_aim_work" property="aim_work"/>
+        <result column="r_aim_profession" property="aim_profession"/>
+        <result column="r_aim_introduce" property="aim_introduce"/>
+        <result column="r_aim_worktime" property="aim_worktime"/>
+        <result column="r_aim_workstyle" property="aim_workstyle"/>
+        <result column="r_headpicture" property="headpicture"/>
+        <result column="r_uid" property="uid"/>
+    </resultMap>
+</mapper>
