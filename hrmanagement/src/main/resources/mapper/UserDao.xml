@@ -6,7 +6,7 @@
     <resultMap id="user1" type="com.jy.model.User">
         <id property="u_id" column="u_id" />
         <result property="u_name" column="u_name" />
-        <result property="u_name" column="u_pass" />
+        <result property="u_pass" column="u_pass" />
         <result property="u_sex" column="u_sex" />
     </resultMap>
 

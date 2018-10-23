@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.jy.dao.RecruitDao">
+    <insert id="saveRecruit">
+        INSERT into T_RECRUIT VALUES (RECRUIT_SEQ.nextval,#{name},#{salary},#{place}
+        ,#{eduction},#{work_time},#{time},#{callback},#{company}
+        ,#{style},#{welfare},#{sign})
+    </insert>
+    <update id="updateRecruit">
+        UPDATE T_RECRUIT SET rc_name=#{name},
+        rc_salary=#{salary},
+        rc_place=#{place},
+        rc_eduction=#{eduction},
+        rc_work_time=#{work_time},
+        rc_time=#{time},
+        rc_callback=#{callback},
+        rc_company=#{company},
+        rc_style=#{style},
+        rc_welfare=#{welfare},
+        rc_sign=#{sign} where rc_id=#{id}
+    </update>
+    <delete id="delRecruit">
+        DELETE FROM T_RECRUIT WHERE RC_ID=#{id}
+    </delete>
+    <select id="getRecruits" resultMap="recruit1">
+        SELECT * FROM T_RECRUIT
+    </select>
+
+    <resultMap id="recruit1" type="com.jy.model.Recruit">
+        <id column="rc_id" property="id"/>
+        <result column="rc_name" property="name"/>
+        <result column="rc_salary" property="salary"/>
+        <result column="rc_place" property="place"/>
+        <result column="rc_eduction" property="eduction"/>
+        <result column="rc_work_time" property="work_time"/>
+        <result column="rc_time" property="time"/>
+        <result column="rc_callback" property="callback"/>
+        <result column="rc_company" property="company"/>
+        <result column="rc_style" property="style"/>
+        <result column="rc_welfare" property="welfare"/>
+        <result column="rc_sign" property="sign"/>
+    </resultMap>
+</mapper>

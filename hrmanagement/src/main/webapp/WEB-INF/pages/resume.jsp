@@ -14,7 +14,7 @@
 <html>
 <head>
     <base href="<%=basePath%>"/>
-    <title>招聘</title>
+    <title>简历中心</title>
 </head>
 <link rel="stylesheet" href="../../css/style_view.css" type="text/css"/>
 <style>
@@ -118,7 +118,7 @@
                 </p>
                 <div class="uer">
                     <p class="op">
-                        ${sessionScope.user}:已登录
+                        ${sessionScope.user.u_name}:已登录
                     </p>
                 </div>
             </div>

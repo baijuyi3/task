@@ -35,7 +35,7 @@
                             <a href="window.location.href='register.jsp'">注册</a>
                         </c:if>
                         <c:if test="${sessionScope.user!=null}">
-                            ${sessionScope.user}:已登录
+                            ${sessionScope.user.u_name}:已登录
                         </c:if>
                     </p>
                 </div>
@@ -49,7 +49,9 @@
             <!-- 职位列表 begin -->
             <div class="sojob-result ">
                 <ul class="sojob-list">
-                    <li>
+                    <c:if test="${sessionScope.recruits!=null}">
+                        <c:forEach var="i" items="${sessionScope.recruits}">
+                        <li>
                         <i class="icon icon-red-triangle" title="企业急招职位+高反馈率+高入职率"><b>急</b></i>
                         <div class="sojob-item-main clearfix">
                             <div class="job-info">
@@ -89,6 +91,8 @@
                                 </p>
                             </div>
                         </div></li>
+                        </c:forEach>
+                    </c:if>
                 </ul>
             </div>
         </div>

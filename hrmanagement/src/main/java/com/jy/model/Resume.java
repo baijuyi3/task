@@ -42,6 +42,7 @@ public class Resume implements Serializable {
    private String aim_workstyle;
    private String headpicture;
    private int uid;
+   private String sex;
 
     @Override
     public String toString() {
@@ -64,7 +65,16 @@ public class Resume implements Serializable {
                 ", aim_workstyle='" + aim_workstyle + '\'' +
                 ", headpicture='" + headpicture + '\'' +
                 ", uid=" + uid +
+                ", sex=" + sex +
                 '}';
+    }
+
+    public String getSex() {
+        return sex;
+    }
+
+    public void setSex(String sex) {
+        this.sex = sex;
     }
 
     public int getUid() {

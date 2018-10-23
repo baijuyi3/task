@@ -37,6 +37,7 @@ public class ViewController {
 //        System.out.println(user1);
         if(null!=user1){
             session.setAttribute("user",user1);
+            System.out.println(user1);
             return "view";
         }
         model.addAttribute("msg","用户名或密码错误！");
