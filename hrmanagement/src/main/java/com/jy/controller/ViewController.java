@@ -1,5 +1,6 @@
 package com.jy.controller;
 
+import com.jy.model.Resume;
 import com.jy.model.User;
 import com.jy.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,6 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.servlet.http.HttpSession;
+import java.util.List;
 
 /**
  * Created by Administrator on 2018/10/20.
@@ -65,8 +67,39 @@ public class ViewController {
 //    ********************************简历****************************************
 
     @RequestMapping("/resume")
-    public String resume(Model model){
-
+    public String resume(Model model,HttpSession session){
+        User user= (User) session.getAttribute("user");
+        List<Resume> resumes=userService.getResumeByUid(user.getU_id());
+        model.addAttribute("resumes",resumes);
         return "resume";
+    }
+
+    @RequestMapping("/resume_save")
+    public String resume_save(Model model){
+        return "resume_save";
+    }
+    @RequestMapping("/resume_update")
+    public String resume_update(Model model){
+        return "resume_update";
+    }
+
+    @RequestMapping("/new_resume")
+    public String new_resume(Resume resume,Model model,HttpSession session){
+        boolean res=userService.saveResume(resume);
+        if(!res){
+            model.addAttribute("msg","创建失败");
+            return "resume_save";
+        }
+        return resume(model,session);
+    }
+
+    @RequestMapping("/update_resume")
+    public String update_resume(Resume resume,Model model,HttpSession session){
+        boolean res=userService.updateResume(resume);
+        if(!res){
+            model.addAttribute("msg","更新失败");
+            return "resume_update";
+        }
+        return resume(model,session);
     }
 }

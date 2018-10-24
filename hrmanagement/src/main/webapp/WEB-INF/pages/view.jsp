@@ -26,13 +26,13 @@
                 <p class="right">
                     <a href="/" >招聘信息</a>
                     <span class="l">|</span>
-                    <a href="/view">简历信息</a>
+                    <a href="/resume">简历信息</a>
                 </p>
                 <div class="uer">
                     <p class="op">
                         <c:if test="${sessionScope.user==null}">
-                            <a href="window.location.href='login.jsp'" >登录</a> /
-                            <a href="window.location.href='register.jsp'">注册</a>
+                            <a href="/" >登录</a> /
+                            <a href="/register">注册</a>
                         </c:if>
                         <c:if test="${sessionScope.user!=null}">
                             ${sessionScope.user.u_name}:已登录
@@ -43,14 +43,19 @@
         </div>
     </div>
 </div>
+<div class="sth">
+    <br>
+    <br>
+    <br>
+</div>
 <div class="container">
     <div class="wrap">
         <div class="job-content">
             <!-- 职位列表 begin -->
             <div class="sojob-result ">
                 <ul class="sojob-list">
-                    <c:if test="${sessionScope.recruits!=null}">
-                        <c:forEach var="i" items="${sessionScope.recruits}">
+                    <c:if test="${sessionScope.recruits==null}">
+                        <%--<c:forEach var="i" items="${sessionScope.recruits}">--%>
                         <li>
                         <i class="icon icon-red-triangle" title="企业急招职位+高反馈率+高入职率"><b>急</b></i>
                         <div class="sojob-item-main clearfix">
@@ -59,6 +64,7 @@
                                     <a href="#" data-promid="ims" target="_blank"
                                        onclick="tlog=window.tlog||[];tlog.push('c:w_sojob_jobclick_9')">
                                         理财事业部投资经理（金融市场部） </a>
+                                    <a href="deliver" style="float: right;margin-left: 10px;background: orange;color: #fff">申请</a>
                                 </h3>
                                 <p class="condition clearfix"
                                    title="24-60万_上海-陆家嘴_本科及以上_3年以上">
@@ -91,7 +97,7 @@
                                 </p>
                             </div>
                         </div></li>
-                        </c:forEach>
+                        <%--</c:forEach>--%>
                     </c:if>
                 </ul>
             </div>

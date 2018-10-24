@@ -79,7 +79,7 @@
 </div>
 <div class="container">
     <div class="wrap" style="text-align: center">
-        <form action="new_resume" method="post">
+        <form action="update_resume" method="post">
             <table>
                 <tr>
                     <td colspan="4" style="float: none;text-align: center">

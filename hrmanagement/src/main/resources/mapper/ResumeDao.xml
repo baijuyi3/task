@@ -4,7 +4,7 @@
     <insert id="saveResume">
         INSERT into T_RESUME VALUES (RESUME_SEQ.nextval,#{name},#{birth},#{phone},#{mail}
         ,#{startwork},#{state},#{live},#{salary},#{aim_salary},#{aim_workspace},#{aim_work},#{aim_profession}
-        ,#{aim_introduce},#{aim_worktime},#{aim_workstyle},#{uid},#{sex})
+        ,#{aim_introduce},#{aim_worktime},#{aim_workstyle},#{uid},#{sex},#{r_name})
     </insert>
     <update id="updateResume">
         UPDATE T_RESUME SET R_NAME=#{name},
@@ -22,7 +22,8 @@
         r_aim_introduce=#{aim_introduce},
         r_aim_worktime=#{aim_worktime},
         r_aim_workstyle=#{aim_workstyle},
-        r_sex=#{sex}
+        r_sex=#{sex},
+        r_R_name=#{r_name}
         where R_id=#{id}
     </update>
     <delete id="delResume">
@@ -54,5 +55,6 @@
         <result column="r_aim_workstyle" property="aim_workstyle"/>
         <result column="r_uid" property="uid"/>
         <result column="r_sex" property="sex"/>
+        <result column="r_r_name" property="r_name"/>
     </resultMap>
 </mapper>

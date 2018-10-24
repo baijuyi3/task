@@ -43,6 +43,7 @@ public class Resume implements Serializable {
    private String headpicture;
    private int uid;
    private String sex;
+   private String r_name;
 
     @Override
     public String toString() {
@@ -66,7 +67,16 @@ public class Resume implements Serializable {
                 ", headpicture='" + headpicture + '\'' +
                 ", uid=" + uid +
                 ", sex=" + sex +
+                ", r_name=" + r_name +
                 '}';
+    }
+
+    public String getR_name() {
+        return r_name;
+    }
+
+    public void setR_name(String r_name) {
+        this.r_name = r_name;
     }
 
     public String getSex() {

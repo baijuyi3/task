@@ -17,9 +17,5 @@ public class AdminController {
     @Autowired
     private UserService userService;
 
-    @RequestMapping("/save_resume")
-    public String save_resume(Model model){
 
-        return "resume_save";
-    }
 }

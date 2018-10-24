@@ -9,7 +9,7 @@ import java.util.List;
  */
 public interface ResumeDao {
     int saveResume(Resume resume);
-    int delResume(Resume resume);
+    int delResume(int id);
     int updateResume(Resume resume);
     List<Resume> getResumeByUid(int uid);
     Resume getResumeById(int id);

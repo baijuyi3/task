@@ -138,7 +138,7 @@
             </ul>
             <ul class="mt_r">
                 <li>
-                    <a class="a" href="/resume_save">创建简历</a>
+                    <a class="a" href="/save_resume">创建简历</a>
                 </li>
             </ul>
         </div>
@@ -155,12 +155,10 @@
             </c:if>
             <c:if test="${requestScope.resumes!=null}">
                     <c:forEach items="${requestScope.resumes}" var="i" >
+                        <input type="hidden" name="id" value="${i.id}">
                         <div class="rli">
-                            <li class="l1">${i.r_name}</li>
-                            <li class="l2">
-                                <a href="/resume_update?id=${i.id}">编辑</a>&nbsp;&nbsp;|&nbsp;&nbsp;
-                                <a href="javascript:void(0);">删除<input type="hidden" name="id" value="${i.id}"></a>
-                            </li>
+                            <li class="l1">${i.name}</li>
+                            <li class="l2"><a href="/update_resume?id=${i.id}">编辑</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="javascript:void(0);">删除</a></li>
                         </div>
                     </c:forEach>
                 </table>
