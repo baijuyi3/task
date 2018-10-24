@@ -15,4 +15,5 @@ public interface DeliverDao {
     List<Deliver> getDeliverByUid(int u_id);
     List<Deliver> getDeliverByUidAndState(int u_id,int state);
     Deliver getDeliverByUidAndRcid(int u_id,int rc_id);
+    Deliver getDeliverById(int id);
 }

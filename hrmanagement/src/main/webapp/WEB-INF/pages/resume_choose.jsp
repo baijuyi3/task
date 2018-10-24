@@ -126,6 +126,7 @@
                 </table>
             </c:if>
             <input type="hidden" name="rc_id" value="${rc_id}">
+            <input type="hidden" name="rc_name" value="${rc_name}">
                 <input type="submit" value="申请">
             </form>
     </div>

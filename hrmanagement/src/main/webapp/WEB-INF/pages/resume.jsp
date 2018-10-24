@@ -136,7 +136,7 @@
 <div class="wrap">
     <div class="side">
         <span><a href="#">我的简历</a></span>
-        <span><a href="#">我的信息</a></span>
+        <span><a href="/receive">我的信息</a></span>
         <span><a href="#">我的投递</a></span>
     </div>
     <div class="content">

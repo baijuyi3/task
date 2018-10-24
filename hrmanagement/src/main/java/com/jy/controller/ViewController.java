@@ -1,5 +1,6 @@
 package com.jy.controller;
 
+import com.jy.model.Deliver;
 import com.jy.model.Recruit;
 import com.jy.model.Resume;
 import com.jy.model.User;
@@ -41,6 +42,11 @@ public class ViewController {
 //        System.out.println(user1);
         if(null!=user1){
             session.setAttribute("user",user1);
+            if(user1.getU_name().equals("admin")){
+                List<Deliver> deliver_1=userService.getDeliverByState(1);
+                session.setAttribute("deliver_1",deliver_1);
+                return "admin_view";
+            }
 //            System.out.println(user1);
             return view(model,session);
         }
@@ -64,5 +70,12 @@ public class ViewController {
         model.addAttribute("msg",(res?"注册成功":"注册失败"));
         return "../../register";
     }
-
+//    面试邀请
+@RequestMapping("/receive")
+public String receive(Model model,HttpSession session){
+    User user= (User) session.getAttribute("user");
+    List<Deliver> deliver_2=userService.getDeliverByUidAndState(user.getU_id(),2);
+    model.addAttribute("deliver_2",deliver_2);
+    return "receive";
+}
 }

@@ -147,18 +147,20 @@
             <div class="tit">
                 <ul class="clearfix">
                     <li class="l1">消息</li>
-                    <li class="l2">操作</li>
+                    <li class="l2">职位</li>
                 </ul>
             </div>
+            <c:if test="${requestScope.invite!=null}">
+                <span>暂无面试</span>
+            </c:if>
             <c:if test="${requestScope.deliver_2==null}">
                 <span>暂无面试</span>
             </c:if>
             <c:if test="${requestScope.deliver_2!=null}">
                     <c:forEach items="${requestScope.deliver_2}" var="i" >
-                        <input type="hidden" name="id" value="${i.id}">
                         <div class="rli">
-                            <li class="l1">新的面试消息</li>
-                            <li class="l2"><a href="/update_resume?id=${i.id}">编辑</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="javascript:void(0);">删除</a></li>
+                            <li class="l1"><a href="/interview?id=${i.id}">新的面试消息</a></li>
+                            <li class="l2">${i.rc_name}</li>
                         </div>
                     </c:forEach>
                 </table>

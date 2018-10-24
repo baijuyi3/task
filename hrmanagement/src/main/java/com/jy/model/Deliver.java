@@ -14,6 +14,7 @@ public class Deliver implements Serializable {
     private String interv_date;
     private String place;
     private int u_id;
+    private String rc_name;
     @Override
     public String toString() {
         return "Deliver{" +
@@ -25,7 +26,16 @@ public class Deliver implements Serializable {
                 ", interv_date='" + interv_date + '\'' +
                 ", place='" + place + '\'' +
                 ", u_id='" + u_id + '\'' +
+                ", rc_name='" + rc_name + '\'' +
                 '}';
+    }
+
+    public String getRc_name() {
+        return rc_name;
+    }
+
+    public void setRc_name(String rc_name) {
+        this.rc_name = rc_name;
     }
 
     public int getU_id() {

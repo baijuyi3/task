@@ -135,39 +135,33 @@
 </div>
 <div class="wrap">
     <div class="side">
-        <span><a href="#">我的简历</a></span>
-        <span><a href="#">我的信息</a></span>
+        <span><a href="#">面试申请</a></span>
+        <span><a href="#">员工分配</a></span>
         <span><a href="#">我的投递</a></span>
     </div>
     <div class="content">
         <div class="mt">
             <ul class="mt_l">
-                <li class="on">简历中心</li>
-            </ul>
-            <ul class="mt_r">
-                <li>
-                    <a class="a" href="/resume_save">创建简历</a>
-                </li>
+                <li class="on">面试申请</li>
             </ul>
         </div>
         <%--*******************************简历*************************************--%>
         <div class="rbox">
             <div class="tit">
                 <ul class="clearfix">
-                    <li class="l1">简历名称</li>
+                    <li class="l1">职位</li>
                     <li class="l2">操作</li>
                 </ul>
             </div>
-            <c:if test="${requestScope.resumes==null}">
-                <span>暂无简历</span>
+            <c:if test="${requestScope.deliver_1==null}">
+                <span>暂无申请简历</span>
             </c:if>
-            <c:if test="${requestScope.resumes!=null}">
-                    <c:forEach items="${requestScope.resumes}" var="i" >
+            <c:if test="${requestScope.deliver_1!=null}">
+                    <c:forEach items="${requestScope.deliver_1}" var="i" >
                         <div class="rli">
-                            <li class="l1">${i.r_name}</li>
+                            <li class="l1"><a href="/deliver_info?id=${i.d_id}">${i.rc_name}</a></li>
                             <li class="l2">
-                                <a href="/resume_update?id=${i.id}">编辑</a>&nbsp;&nbsp;|&nbsp;&nbsp;
-                                <a  href="/del_resume?id=${i.id}">删除</a>
+                                <a href="#">新申请</a>
                             </li>
                         </div>
                     </c:forEach>

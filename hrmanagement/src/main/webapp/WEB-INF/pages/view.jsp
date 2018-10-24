@@ -106,7 +106,7 @@
                                     <a href="#" data-promid="ims" target="_blank"
                                        onclick="tlog=window.tlog||[];tlog.push('c:w_sojob_jobclick_9')">
                                             ${i.name} </a>
-                                    <a href="/resume_choose?rc_id=${i.id}" style="float: right;margin-left: 10px;background: orange;color: #fff">申请</a>
+                                    <a href="/resume_choose?rc_id=${i.id}&rc_name=${i.rc_name}" style="float: right;margin-left: 10px;background: orange;color: #fff">申请</a>
                                 </h3>
                                 <p class="condition clearfix"
                                    title="${i.place}${i.eduction}${i.work_time}">
