@@ -47,10 +47,11 @@
     }
 </style>
 <script>
-    <c:if test="${requestScope.msg!=null}">
-        alert(${requestScope.msg})
-    </c:if>
+
 </script>
+<c:if test="${requestScope.msg!=null}">
+    <c:out value="<script>alert(${requestScope.msg});</script>"/>
+</c:if>
 <body id="sojob">
 <div class="p-wrap">
     <div class="header">
@@ -58,9 +59,9 @@
             <div class="in">
                 <p class="left">欢迎来到XX公司</p>
                 <p class="right">
-                    <a href="/" >招聘信息</a>
+                    <a href="/view" >招聘信息</a>
                     <span class="l">|</span>
-                    <a href="/view">简历信息</a>
+                    <a href="/resume">简历信息</a>
                 </p>
                 <div class="uer">
                     <p class="op">
@@ -83,7 +84,7 @@
             <table>
                 <tr>
                     <td colspan="4" style="float: none;text-align: center">
-                        <input type="text" name="r_r_name" value="我的简历" style="height: 40px;text-align: center;font-size: 20px">
+                        <input type="text" name="r_name" value="我的简历" style="height: 40px;text-align: center;font-size: 20px">
                     </td>
                 </tr>
                 <tr>
@@ -91,58 +92,64 @@
                 </tr>
                 <tr>
                     <td>姓名：</td>
-                    <td><input type="text" name="name"></td>
+                    <td><input type="text" name="name" required></td>
                     <td>出生日期：</td>
-                    <td><input type="text" name="birth"></td>
+                    <td><input type="text" name="birth" required></td>
                 </tr>
                 <tr>
                     <td>性别：</td>
-                    <td><input type="radio" name="sex" value="男">男
+                    <td><input type="radio" name="sex" value="男" checked>男
                         <input type="radio" name="sex" value="女">女</td>
                     <td>邮箱：</td>
-                    <td><input type="text" name="mail"></td>
+                    <td><input type="text" name="mail" required></td>
                 </tr>
                 <tr>
                     <td>开始工作时间：</td>
-                    <td><input type="text" name="startwork"></td>
+                    <td><input type="text" name="startwork" required></td>
                     <td>目前状态：</td>
                     <td><select name="state" id="">
-                        <option value="目前不想换工作">目前不想换工作</option>
+                        <option value="目前不想换工作" >目前不想换工作</option>
                         <option value="有好机会会考虑">有好机会会考虑</option>
-                        <option value="正在找工作">正在找工作</option>
+                        <option value="正在找工作" selected>正在找工作</option>
                     </select></td>
                 </tr>
                 <tr>
                     <td>居住地：</td>
-                    <td><input type="text" name="live"></td>
+                    <td><input type="text" name="live" required></td>
                     <td>电话：</td>
-                    <td><input type="text" name="phone"></td>
+                    <td><input type="text" name="phone" required></td>
+                </tr>
+                <tr>
+                    <td>目前薪资：</td>
+                    <td><input type="text" name="salary" required></td>
+                    <td></td>
+                    <td></td>
                 </tr>
                 <tr>
                     <td colspan="4" class="strong" style="float: none;text-align: center">求职意向</td>
                 </tr>
                 <tr>
                     <td>期望薪资：</td>
-                    <td><input type="text" name="aim_salary">/月 </td>
+                    <td><input type="text" name="aim_salary" required>/月 </td>
                     <td>期望工作地点</td>
-                    <td><input type="text" name="aim_workspace"></td>
+                    <td><input type="text" name="aim_workspace" required></td>
                 </tr>
                 <tr>
                     <td>期望工作职位：</td>
-                    <td><input type="text" name="aim_work"></td>
+                    <td><input type="text" name="aim_work" required></td>
                     <td>期望的行业：</td>
-                    <td><input type="text" name="profession"></td>
+                    <td><input type="text" name="aim_profession" required></td>
                 </tr>
                 <tr>
                     <td>自我介绍：</td>
-                    <td colspan="3"><textarea name="aim_introduce" cols="60" rows="10"></textarea></td>
+                    <td colspan="3"><textarea name="aim_introduce" cols="60" rows="10" required></textarea></td>
                 </tr>
                 <tr>
                     <td>期望工作时间：</td>
-                    <td><input type="text" name="aim_work"></td>
+                    <td><input type="text" name="aim_worktime" required></td>
                     <td>期望的工作性质：</td>
                     <td><select name="aim_workstyle">
-                        <option value="全职">全职</option>
+                        <option value="全职" selected>全职</option>
                         <option value="兼职">兼职</option>
                         <option value="实习">实习</option>
                         <option value="全/兼职">全/兼职</option>
@@ -154,4 +161,9 @@
     </div>
 </div>
 </body>
+<script>
+    <c:if test="${requestScope.msg!=null}">
+    alert("${requestScope.msg}")
+    </c:if>
+</script>
 </html>

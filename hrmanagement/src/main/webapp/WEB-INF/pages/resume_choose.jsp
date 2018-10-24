@@ -18,27 +18,8 @@
 </head>
 <link rel="stylesheet" href="../../css/style_view.css" type="text/css"/>
 <style>
-    .side{
-        float: left;
-        text-align: center;
-        height: 1000px;
-        background: palegoldenrod;
-        width:25%;
-    }
-    .side span{
-        display: inline-block;
-        font-size: 18px;
-        margin: 0;
-        padding: 5px 0;
-        width: 100%;
-        background: palegoldenrod;
-    }
-    .side span:hover{
-        background: orange;
-        opacity:0.8;filter(alpha=80)
-    }
     .content{
-        float: right;
+        margin: 0 auto;
         height: 1000px;
         width: 70%;
         text-align: center;
@@ -105,14 +86,6 @@
         border-bottom: 1px solid #eee;
     }
 </style>
-<script type="text/javascript" src="../../js/jquery-3.2.1.js"></script>
-<script>
-    $(function () {
-       <c:if test="${requestScope.msg!=null}">
-        alert(${requestScope.msg})
-        </c:if>
-    })
-</script>
 <body>
 <div class="p-wrap">
     <div class="header">
@@ -134,22 +107,7 @@
     </div>
 </div>
 <div class="wrap">
-    <div class="side">
-        <span><a href="#">我的简历</a></span>
-        <span><a href="#">我的信息</a></span>
-        <span><a href="#">我的投递</a></span>
-    </div>
     <div class="content">
-        <div class="mt">
-            <ul class="mt_l">
-                <li class="on">简历中心</li>
-            </ul>
-            <ul class="mt_r">
-                <li>
-                    <a class="a" href="/resume_save">创建简历</a>
-                </li>
-            </ul>
-        </div>
         <%--*******************************简历*************************************--%>
         <div class="rbox">
             <div class="tit">
@@ -158,28 +116,20 @@
                     <li class="l2">操作</li>
                 </ul>
             </div>
-            <c:if test="${requestScope.resumes==null}">
-                <span>暂无简历</span>
-            </c:if>
+            <form action="save_deliver" method="post">
             <c:if test="${requestScope.resumes!=null}">
                     <c:forEach items="${requestScope.resumes}" var="i" >
                         <div class="rli">
-                            <li class="l1">${i.r_name}</li>
-                            <li class="l2">
-                                <a href="/resume_update?id=${i.id}">编辑</a>&nbsp;&nbsp;|&nbsp;&nbsp;
-                                <a  href="/del_resume?id=${i.id}">删除</a>
-                            </li>
+                            <li class="l1"><input type="radio" name="r_id" value="${i.id}">${i.r_name}</li>
                         </div>
                     </c:forEach>
                 </table>
             </c:if>
+            <input type="hidden" name="rc_id" value="${rc_id}">
+                <input type="submit" value="申请">
+            </form>
     </div>
 </div>
 </div>
 </body>
-<script>
-    <c:if test="${requestScope.msg!=null}">
-    alert("${requestScope.msg}");
-    </c:if>
-</script>
 </html>

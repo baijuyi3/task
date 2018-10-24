@@ -6,24 +6,6 @@ import java.io.Serializable;
  * Created by Administrator on 2018/10/22.
  */
 public class Resume implements Serializable {
-   /* R_ID NUMBER(20) not null
-    primary key,
-    R_NAME VARCHAR2(20) not null,
-    R_BIRTH VARCHAR2(20) not null,
-    R_PHONE VARCHAR2(100) not null,
-    R_MAIL VARCHAR2(100) not null,
-    R_STARTWORK VARCHAR2(20) not null,
-    R_STATE VARCHAR2(20) not null,
-    R_LIVE VARCHAR2(20) not null,
-    R_SALARY NUMBER(20,2),
-    R_AIM_SALARY NUMBER(20,2) not null,
-    R_AIM_WORKSPACE VARCHAR2(20) not null,
-    R_AIM_WORK VARCHAR2(100) not null,
-    R_AIM_PROFESSION VARCHAR2(100),
-    R_AIM_INTRODUCE VARCHAR2(500),
-    R_AIM_WORKTIME VARCHAR2(100),
-    R_AIM_WORKSTYLE VARCHAR2(20),
-    R_HEADPICTURE VARCHAR2(100)*/
    private int id;
    private String name;
    private String birth;
@@ -66,8 +48,8 @@ public class Resume implements Serializable {
                 ", aim_workstyle='" + aim_workstyle + '\'' +
                 ", headpicture='" + headpicture + '\'' +
                 ", uid=" + uid +
-                ", sex=" + sex +
-                ", r_name=" + r_name +
+                ", sex='" + sex + '\'' +
+                ", r_name='" + r_name + '\'' +
                 '}';
     }
 

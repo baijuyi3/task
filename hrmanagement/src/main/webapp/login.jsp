@@ -24,21 +24,7 @@
 </style>
 <script type="text/javascript" src="js/jquery-3.2.1.js"></script>
 <script>
-$(function () {
-    $("[name=u_name]").blur(function () {
-        $.ajax({
-            type:"get",
-            url:"check_user",
-            data:"name="+$("#name").val(),
-            success:function (obj) {
-                $("p").text(obj);
-            },
-            error:function () {
-                $("p").text("error");
-            }
-        })
-    })
-})
+
 </script>
 <body class="login">
     <div class="login_main">

@@ -112,9 +112,9 @@
             <div class="in">
                 <p class="left">欢迎来到XX公司</p>
                 <p class="right">
-                    <a href="/" >招聘信息</a>
+                    <a href="/view" >招聘信息</a>
                     <span class="l">|</span>
-                    <a href="/view">简历信息</a>
+                    <a href="/resume">简历信息</a>
                 </p>
                 <div class="uer">
                     <p class="op">
@@ -127,9 +127,9 @@
 </div>
 <div class="wrap">
     <div class="side">
-        <span><a href="showGood?currentPage=1">我的简历</a></span>
-        <span><a href="showAddress?currentPage=1">我的信息</a></span>
-        <span><a href="pagingBuyCar?currentPage=1">我的投递</a></span>
+        <span><a href="#">我的简历</a></span>
+        <span><a href="#">我的信息</a></span>
+        <span><a href="#">我的投递</a></span>
     </div>
     <div class="content">
         <div class="mt">
@@ -146,18 +146,18 @@
         <div class="rbox">
             <div class="tit">
                 <ul class="clearfix">
-                    <li class="l1">简历名称</li>
+                    <li class="l1">消息</li>
                     <li class="l2">操作</li>
                 </ul>
             </div>
-            <c:if test="${requestScope.resumes==null}">
-                <span>暂无简历</span>
+            <c:if test="${requestScope.deliver_2==null}">
+                <span>暂无面试</span>
             </c:if>
-            <c:if test="${requestScope.resumes!=null}">
-                    <c:forEach items="${requestScope.resumes}" var="i" >
+            <c:if test="${requestScope.deliver_2!=null}">
+                    <c:forEach items="${requestScope.deliver_2}" var="i" >
                         <input type="hidden" name="id" value="${i.id}">
                         <div class="rli">
-                            <li class="l1">${i.name}</li>
+                            <li class="l1">新的面试消息</li>
                             <li class="l2"><a href="/update_resume?id=${i.id}">编辑</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="javascript:void(0);">删除</a></li>
                         </div>
                     </c:forEach>
@@ -167,4 +167,9 @@
 </div>
 </div>
 </body>
+<script>
+    <c:if test="${requestScope.msg!=null}">
+    alert("${requestScope.msg}")
+    </c:if>
+</script>
 </html>

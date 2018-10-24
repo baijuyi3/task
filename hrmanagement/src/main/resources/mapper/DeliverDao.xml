@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.jy.dao.DeliverDao">
+    <insert id="saveDeliver">
+        INSERT INTO T_DELIVER VALUES (DELIVER_SEQ.nextval,#{rc_id},
+        #{r_id},#{state},#{date,jdbcType=VARCHAR},#{interv_date,jdbcType=VARCHAR},#{place,jdbcType=VARCHAR},#{u_id})
+    </insert>
+    <update id="updateDeliver">
+        UPDATE T_DELIVER SET
+        D_STATE=#{state},
+        D_date=#{date},
+        D_interv_date=#{interv_date},
+        d_place=#{place}
+        where d_id=#{id}
+    </update>
+    <delete id="delDeliver">
+        DELETE FROM T_DELIVER WHERE d_id=#{id}
+    </delete>
+    <select id="getDeliverByState" resultMap="deliver1">
+        SELECT * FROM T_DELIVER WHERE D_STATE=#{state}
+    </select>
+    <select id="getDeliverByUid" resultMap="deliver1">
+        SELECT * FROM T_DELIVER WHERE D_U_ID=#{u_id}
+    </select>
+    <select id="getDeliverByUidAndState" resultMap="deliver1">
+        SELECT * FROM T_DELIVER WHERE D_U_ID=#{arg0} and D_state=#{arg1}
+    </select>
+    <select id="getDeliverByUidAndRcid" resultMap="deliver1">
+        SELECT * FROM T_DELIVER WHERE D_U_ID=#{arg0} and d_rc_id=#{arg1}
+    </select>
+
+    <resultMap id="deliver1" type="com.jy.model.Deliver">
+        <id property="id" column="d_id"/>
+        <result property="rc_id" column="d_rc_id"/>
+        <result property="r_id" column="d_r_id"/>
+        <result property="state" column="d_state"/>
+        <result property="date" column="d_date"/>
+        <result property="interv_date" column="d_interv_date"/>
+        <result property="place" column="d_place"/>
+        <result property="u_id" column="d_u_id"/>
+    </resultMap>
+</mapper>

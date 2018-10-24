@@ -27,7 +27,7 @@
         where R_id=#{id}
     </update>
     <delete id="delResume">
-        DELETE FROM T_RESUME WHERE r_id=#{id};
+        DELETE FROM T_RESUME WHERE r_id=#{id}
     </delete>
     <select id="getResumeByUid" resultMap="resume1">
         SELECT * FROM T_RESUME where  R_UID=#{uid}

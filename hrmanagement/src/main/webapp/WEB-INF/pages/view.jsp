@@ -1,4 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%--
   Created by IntelliJ IDEA.
   User: Administrator
@@ -24,7 +25,7 @@
             <div class="in">
                 <p class="left">欢迎来到XX公司</p>
                 <p class="right">
-                    <a href="/" >招聘信息</a>
+                    <a href="/view" >招聘信息</a>
                     <span class="l">|</span>
                     <a href="/resume">简历信息</a>
                 </p>
@@ -54,9 +55,7 @@
             <!-- 职位列表 begin -->
             <div class="sojob-result ">
                 <ul class="sojob-list">
-                    <c:if test="${sessionScope.recruits==null}">
-                        <%--<c:forEach var="i" items="${sessionScope.recruits}">--%>
-                        <li>
+                    <li>
                         <i class="icon icon-red-triangle" title="企业急招职位+高反馈率+高入职率"><b>急</b></i>
                         <div class="sojob-item-main clearfix">
                             <div class="job-info">
@@ -64,7 +63,7 @@
                                     <a href="#" data-promid="ims" target="_blank"
                                        onclick="tlog=window.tlog||[];tlog.push('c:w_sojob_jobclick_9')">
                                         理财事业部投资经理（金融市场部） </a>
-                                    <a href="deliver" style="float: right;margin-left: 10px;background: orange;color: #fff">申请</a>
+                                    <a href="/resume_choose?rc_id=${i.id}" style="float: right;margin-left: 10px;background: orange;color: #fff">申请</a>
                                 </h3>
                                 <p class="condition clearfix"
                                    title="24-60万_上海-陆家嘴_本科及以上_3年以上">
@@ -97,7 +96,50 @@
                                 </p>
                             </div>
                         </div></li>
-                        <%--</c:forEach>--%>
+                    <c:if test="${sessionScope.recruits!=null}">
+                        <c:forEach var="i" items="${sessionScope.recruits}">
+                        <li>
+                        <i class="icon icon-red-triangle" title="企业急招职位+高反馈率+高入职率"><b>${i.sign}</b></i>
+                        <div class="sojob-item-main clearfix">
+                            <div class="job-info">
+                                <h3 title="${i.name}">
+                                    <a href="#" data-promid="ims" target="_blank"
+                                       onclick="tlog=window.tlog||[];tlog.push('c:w_sojob_jobclick_9')">
+                                            ${i.name} </a>
+                                    <a href="/resume_choose?rc_id=${i.id}" style="float: right;margin-left: 10px;background: orange;color: #fff">申请</a>
+                                </h3>
+                                <p class="condition clearfix"
+                                   title="${i.place}${i.eduction}${i.work_time}">
+                                    <span class="text-warning">24-60万</span>
+                                    <a href="https://www.liepin.com/sh/zhaopin/"
+                                       data-selector="data-url" class="area">${i.place}</a>
+                                    <span class="edu">${i.eduction}</span>
+                                    <span>${i.work_time}</span>
+                                </p>
+                                <p class="time-info clearfix">
+                                    <time title="2018年10月15日">${i.time}</time>
+                                    <span title="反馈时间以工作日为准，周末和假期时间不会计算在内">${i.callback}</span>
+                                </p>
+                            </div>
+                            <div class="company-info nohover">
+                                <p class="company-name">
+                                    <a title="${i.company}" 	target="_blank"
+                                       href="#">${i.company}</a>
+                                </p>
+                                <p class="field-financing">
+                                    <span>
+                                        <a class="industry-link" href="#" onclick="return false;" target="_blank">${i.style}</a>
+                                    </span>
+                                </p>
+                                <p class="temptation clearfix">
+
+                                    <c:forEach items="${fn:split(i.welfare,'，') }" var="m">
+                                    <span>${m}</span>
+                                    </c:forEach>
+                                </p>
+                            </div>
+                        </div></li>
+                        </c:forEach>
                     </c:if>
                 </ul>
             </div>
@@ -105,4 +147,10 @@
     </div>
 </div>
 </body>
+<script>
+    <c:if test="${requestScope.msg!=null}">
+        alert("${requestScope.msg}")
+    </c:if>
+</script>
+
 </html>
