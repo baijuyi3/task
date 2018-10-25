@@ -25,6 +25,9 @@
     <select id="getRecruits" resultMap="recruit1">
         SELECT * FROM T_RECRUIT
     </select>
+    <select id="getRecruitById" resultMap="recruit1">
+         SELECT * FROM T_RECRUIT WHERE RC_ID=#{id}
+    </select>
 
     <resultMap id="recruit1" type="com.jy.model.Recruit">
         <id column="rc_id" property="id"/>

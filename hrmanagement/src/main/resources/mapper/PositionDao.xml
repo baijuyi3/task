@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.jy.dao.PositionDao">
+    <insert id="savePosition">
+        INSERT INTO T_POSITION VALUES (POSITION_SEQ.nextval,#{name},#{dp_id})
+    </insert>
+    <update id="updatePosition">
+        UPDATE T_POSITION SET P_NAME=#{name},p_dp_id=#{dp_id} where p_id=#{id}
+    </update>
+    <delete id="delPosition">
+        DELETE FROM T_POSITION WHERE p_id=#{id}
+    </delete>
+    <select id="getAllPosition" resultMap="position1">
+        SELECT * FROM T_POSITION
+    </select>
+    <select id="getPositionById" resultMap="position1">
+        SELECT * FROM T_POSITION WHERE p_id=#{id}
+    </select>
+
+    <resultMap id="position1" type="com.jy.model.Position">
+        <id column="p_id" property="id"/>
+        <result column="p_name" property="name"/>
+        <result column="p_dp_id" property="dp_id"/>
+    </resultMap>
+</mapper>

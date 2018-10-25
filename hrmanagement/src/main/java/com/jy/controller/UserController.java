@@ -17,7 +17,7 @@ import java.util.List;
  * Created by Administrator on 2018/10/20.
  */
 @Controller
-public class ViewController {
+public class UserController {
     @Autowired
     private UserService userService;
 
@@ -37,17 +37,12 @@ public class ViewController {
 //    ********************************登入注册****************************************
     @RequestMapping("/login")
     public String login(User user, HttpSession session, Model model)throws Exception{
-//        System.out.println(user);
         User user1=userService.getUserByNameAndPass(user);
-//        System.out.println(user1);
         if(null!=user1){
             session.setAttribute("user",user1);
             if(user1.getU_name().equals("admin")){
-                List<Deliver> deliver_1=userService.getDeliverByState(1);
-                session.setAttribute("deliver_1",deliver_1);
-                return "admin_view";
+                return "admin_view/admin_view";//管理员登录
             }
-//            System.out.println(user1);
             return view(model,session);
         }
         model.addAttribute("msg","用户名或密码错误！");

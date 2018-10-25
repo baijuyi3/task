@@ -24,7 +24,7 @@ public class DeliverController {
     @Autowired
     private AdminService adminService;
 
-    //  *********************************申请**************************************
+    //  *********************************user申请**************************************
     @RequestMapping("/save_deliver")
     public String save_deliver(Deliver deliver,Model model, HttpSession session)throws Exception{
         User user= (User) session.getAttribute("user");
@@ -54,7 +54,7 @@ public class DeliverController {
         return "resume_choose";
     }
 
-    //  *********************************查看简历**************************************
+    //  *********************************admin查看简历**************************************
     @RequestMapping("/deliver_info")
     public String deliver_info(int id,Model model, HttpSession session)throws Exception{
         Deliver deliver=adminService.getDeliverById(id);
@@ -63,18 +63,26 @@ public class DeliverController {
         model.addAttribute("d_id",id);
         return "deliver_info";
     }
+    @RequestMapping("/deliver_1")
+    public String deliver_1(int id,Model model, HttpSession session)throws Exception{
+        List<Deliver> deliver_1=userService.getDeliverByState(1);
+        model.addAttribute("deliver_1",deliver_1);
+        return "admin_view/deliver_1";
+    }
 
     @RequestMapping("/deliver_2")
-    public String deliver_2(int id,Model model, HttpSession session)throws Exception{
+    public String deliver_2(int id,String interv_date,String place,Model model, HttpSession session)throws Exception{
         Deliver deliver=adminService.getDeliverById(id);
+        deliver.setInterv_date(interv_date);
+        deliver.setPlace(place);
         deliver.setState(2);
         boolean res=adminService.updateDeliver(deliver);
        if(!res){
            model.addAttribute("msg","同意失败");
        }
         List<Deliver> deliver_1=userService.getDeliverByState(1);
-        session.setAttribute("deliver_1",deliver_1);
-        return "admin_view";
+        model.addAttribute("deliver_1",deliver_1);
+        return "admin_view/deliver_1";
     }
     @RequestMapping("/deliver_0")
     public String deliver_0(int id,Model model, HttpSession session)throws Exception{
@@ -85,7 +93,7 @@ public class DeliverController {
             model.addAttribute("msg","拒绝失败");
         }
         List<Deliver> deliver_1=userService.getDeliverByState(1);
-        session.setAttribute("deliver_1",deliver_1);
-        return "admin_view";
+        model.addAttribute("deliver_1",deliver_1);
+        return "admin_view/deliver_1";
     }
 }

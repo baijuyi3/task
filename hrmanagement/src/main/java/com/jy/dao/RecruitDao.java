@@ -12,4 +12,5 @@ public interface RecruitDao {
     int delRecruit(int id);
     int updateRecruit(Recruit recruit);
     List<Recruit> getRecruits();
+    Recruit getRecruitById(int id);
 }

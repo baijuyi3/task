@@ -304,3 +304,11 @@ ul.sojob-list li.downgrade-search span {
     padding-left: 0;
     border: 0;
 }
+/**********************************************/
+.sub{
+    text-align: center;
+    background: orange;
+    width: 80px;
+    height: 40px;
+    margin-top: 30px;
+}

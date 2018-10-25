@@ -161,9 +161,20 @@
                     </select></td>
                 </tr>
             </table>
-            <input type="hidden" name="id" value="${requestScope.resume.id}">
-            <a id="sub" href="/deliver_2?id=${d_id}">同意</a>&nbsp;&nbsp;&nbsp;&nbsp;
+
+        <form action="deliver_2">
+            <table>
+                <tr>
+                    <td>面试时间：</td>
+                    <td><input type="text" name="interv_date"></td>
+                    <td>面试地点：</td>
+                    <td><input type="text" name="place"></td>
+                </tr>
+            </table>
+            <input type="hidden" name="id" value="${d_id}">
+            <input id="sub" type="submit" value="同意">&nbsp;&nbsp;&nbsp;&nbsp;
             <a id="ref" href="/deliver_0?id=${d_id}">拒绝</a>
+        </form>
     </div>
 </div>
 </body>

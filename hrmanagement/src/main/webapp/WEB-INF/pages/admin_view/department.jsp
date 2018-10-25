@@ -16,7 +16,7 @@
     <base href="<%=basePath%>"/>
     <title>简历中心</title>
 </head>
-<link rel="stylesheet" href="../../css/style_view.css" type="text/css"/>
+<link rel="stylesheet" href="../../../css/style_view.css" type="text/css"/>
 <style>
     .side{
         float: left;
@@ -105,7 +105,7 @@
         border-bottom: 1px solid #eee;
     }
 </style>
-<script type="text/javascript" src="../../js/jquery-3.2.1.js"></script>
+<script type="text/javascript" src="../../../js/jquery-3.2.1.js"></script>
 <script>
     $(function () {
        <c:if test="${requestScope.msg!=null}">
@@ -135,44 +135,81 @@
 </div>
 <div class="wrap">
     <div class="side">
-        <span><a href="#">我的简历</a></span>
-        <span><a href="/receive">我的信息</a></span>
-        <span><a href="#">我的投递</a></span>
+        <span><a href="/deliver-1">面试申请</a></span>
+        <span><a href="/deliver_3">员工分配</a></span>
+        <span><a href="/recruit">招聘信息</a></span>
+        <span><a href="/department">部门</a></span>
+        <span><a href="/position">职位</a></span>
     </div>
     <div class="content">
         <div class="mt">
             <ul class="mt_l">
-                <li class="on">简历中心</li>
+                <li class="on">部门</li>
             </ul>
             <ul class="mt_r">
                 <li>
-                    <a class="a" href="/resume_save">创建简历</a>
+                    <a class="a" href="/department_save">新建部门</a>
                 </li>
             </ul>
         </div>
-        <%--*******************************简历*************************************--%>
+        <%--*******************************部门信息*************************************--%>
         <div class="rbox">
             <div class="tit">
                 <ul class="clearfix">
-                    <li class="l1">简历名称</li>
+                    <li class="l1">部门</li>
                     <li class="l2">操作</li>
                 </ul>
             </div>
-            <c:if test="${requestScope.resumes==null}">
-                <span>暂无简历</span>
+            <c:if test="${requestScope.recruits==null}">
+                <span>暂无部门</span>
             </c:if>
-            <c:if test="${requestScope.resumes!=null}">
-                    <c:forEach items="${requestScope.resumes}" var="i" >
-                        <div class="rli">
-                            <li class="l1">${i.r_name}</li>
-                            <li class="l2">
-                                <a href="/resume_update?id=${i.id}">编辑</a>&nbsp;&nbsp;|&nbsp;&nbsp;
-                                <a  href="/del_resume?id=${i.id}">删除</a>
-                            </li>
-                        </div>
-                    </c:forEach>
+            <%--****************部门列表****************--%>
+            <c:if test="${requestScope.departments!=null}">
+                <c:forEach items="${requestScope.departments}" var="i" >
+                    <div class="rli">
+                        <li class="l1">${i.name}</li>
+                        <li class="l2">
+                            <a href="/department_update?id=${i.id}">编辑</a>&nbsp;&nbsp;|&nbsp;&nbsp;
+                            <a  href="/department_del?id=${i.id}">删除</a>
+                        </li>
+                    </div>
+                </c:forEach>
             </c:if>
-    </div>
+            <%--****************部门更新****************--%>
+            <c:if test="${requestScope.department_u!=null}">
+                <div class="rli">
+                    <form action="/update_department">
+                        <table>
+                            <tr>
+                                <td>部门名称：</td>
+                                <td><input type="text" name="name" value="${requestScope.department_u.name}"></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                        </table>
+                        <input class="sub" type="submit">
+                        <a class="sub" href="/department">返回</a>
+                    </form>
+                </div>
+            </c:if>
+            <%--****************新建部门****************--%>
+            <c:if test="${requestScope.department_s!=null}">
+                <div class="rli">
+                    <form action="/save_department" method="post">
+                        <table>
+                            <tr>
+                                <td>部门名称：</td>
+                                <td><input type="text" name="name"></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                        </table>
+                        <input class="sub" type="submit">
+                        <a class="sub" href="/department">返回</a>
+                    </form>
+                </div>
+            </c:if>
+        </div>
 </div>
 </div>
 </body>
