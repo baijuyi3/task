@@ -65,12 +65,4 @@ public class UserController {
         model.addAttribute("msg",(res?"注册成功":"注册失败"));
         return "../../register";
     }
-//    面试邀请
-@RequestMapping("/receive")
-public String receive(Model model,HttpSession session){
-    User user= (User) session.getAttribute("user");
-    List<Deliver> deliver_2=userService.getDeliverByUidAndState(user.getU_id(),2);
-    model.addAttribute("deliver_2",deliver_2);
-    return "receive";
-}
 }

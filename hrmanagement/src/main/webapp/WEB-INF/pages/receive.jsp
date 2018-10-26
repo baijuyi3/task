@@ -150,9 +150,6 @@
                     <li class="l2">职位</li>
                 </ul>
             </div>
-            <c:if test="${requestScope.invite!=null}">
-                <span>暂无面试</span>
-            </c:if>
             <c:if test="${requestScope.deliver_2==null}">
                 <span>暂无面试</span>
             </c:if>
@@ -163,6 +160,21 @@
                             <li class="l2">${i.rc_name}</li>
                         </div>
                     </c:forEach>
+                </table>
+            </c:if>
+            <c:if test="${requestScope.deliver!=null}">
+                    <div class="rli">
+                        <p>Dear:${sessionScope.user.u_name}</p>
+                        <p></p>
+                        <p>你好，真诚邀请您参加我司的面试，请回复确认以下面试安排！</p>
+                        <p></p>
+                        <p>面试安排：</p>
+                        <p>面试岗位：${requestScope.deliver.rc_name}</p>
+                        <p>时间：${requestScope.deliver.interv_date}</p>
+                        <p>请及时回复，是否能准时参加面试！</p>
+                        <a href="/deliver_3?id=${requestScope.deliver.id}" class="sub">同意</a>
+                        <a href="/deliver_5?id=${requestScope.deliver.id}" class="sub">拒绝</a>
+                    </div>
                 </table>
             </c:if>
     </div>

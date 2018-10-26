@@ -155,15 +155,15 @@
                     <li class="l2">操作</li>
                 </ul>
             </div>
-            <c:if test="${requestScope.deliver_1==null}">
-                <span>暂无申请简历</span>
+            <c:if test="${requestScope.deliver_3==null}">
+                <span>暂无员工分配</span>
             </c:if>
-            <c:if test="${requestScope.deliver_1!=null}">
-                    <c:forEach items="${requestScope.deliver_1}" var="i" >
+            <c:if test="${requestScope.deliver_3!=null}">
+                    <c:forEach items="${requestScope.deliver_3}" var="i" >
                         <div class="rli">
-                            <li class="l1"><a href="/deliver_info?id=${i.d_id}">${i.rc_name}</a></li>
+                            <li class="l1">${i.rc_name}</li>
                             <li class="l2">
-                                <a href="#">新申请</a>
+                                <a href="/save_employee?id=${i.id}">新员工分配</a>
                             </li>
                         </div>
                     </c:forEach>

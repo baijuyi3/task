@@ -96,4 +96,48 @@ public class DeliverController {
         model.addAttribute("deliver_1",deliver_1);
         return "admin_view/deliver_1";
     }
+
+    //*************************收到信息***********************************
+    //    面试邀请
+    @RequestMapping("/receive")
+    public String receive(Model model,HttpSession session){
+        User user= (User) session.getAttribute("user");
+        List<Deliver> deliver_2=userService.getDeliverByUidAndState(user.getU_id(),2);
+        model.addAttribute("deliver_2",deliver_2);
+        return "receive";
+    }
+
+    @RequestMapping("/interview")
+    public String interview(int id,Model model, HttpSession session)throws Exception{
+        Deliver deliver=adminService.getDeliverById(id);
+        model.addAttribute("deliver",deliver);
+        return "admin_view/receive";
+    }
+
+    @RequestMapping("/deliver_3")
+    public String deliver_3(int id,Model model, HttpSession session)throws Exception{
+        Deliver deliver=adminService.getDeliverById(id);
+        deliver.setState(3);
+        boolean res=adminService.updateDeliver(deliver);
+        if(!res){
+            model.addAttribute("msg","同意失败");
+        }
+        User user= (User) session.getAttribute("user");
+        List<Deliver> deliver_2=userService.getDeliverByUidAndState(user.getU_id(),2);
+        model.addAttribute("deliver_2",deliver_2);
+        return "receive";
+    }
+    @RequestMapping("/deliver_5")
+    public String deliver_5(int id,Model model, HttpSession session)throws Exception{
+        Deliver deliver=adminService.getDeliverById(id);
+        deliver.setState(5);
+        boolean res=adminService.updateDeliver(deliver);
+        if(!res){
+            model.addAttribute("msg","拒绝失败");
+        }
+        User user= (User) session.getAttribute("user");
+        List<Deliver> deliver_2=userService.getDeliverByUidAndState(user.getU_id(),2);
+        model.addAttribute("deliver_2",deliver_2);
+        return "receive";
+    }
 }
