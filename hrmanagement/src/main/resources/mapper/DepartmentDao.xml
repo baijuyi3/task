@@ -16,6 +16,9 @@
     <select id="getDepartmentById" resultMap="department1">
         SELECT * FROM T_DEPARTMENT WHERE DP_ID=#{id}
     </select>
+    <select id="getDepartmentByName" resultMap="department1">
+        SELECT * FROM T_DEPARTMENT WHERE DP_NAME=#{name}
+    </select>
 
     <resultMap id="department1" type="com.jy.model.Department">
         <id column="dp_id" property="id"/>

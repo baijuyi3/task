@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.jy.dao.EmployeeDao">
+    <insert id="saveEmployee">
+        INSERT into T_EMPLOYEE VALUES (EMPLOYEE_SEQ.nextval,#{name},
+        #{pass},#{sex},#{phone},#{mail},#{d_id},#{p_id},
+        #{user,jdbcType=VARCHAR},#{salary},#{reward,jdbcType=Number},#{state},#{u_id})
+    </insert>
+    <update id="updateEmployee">
+        UPDATE T_EMPLOYEE SET
+        e_name=#{name},
+        e_pass=#{pass},
+        e_sex=#{sex},
+        e_phone=#{phone},
+        e_mail=#{mail},
+        e_d_id=#{d_id},
+        e_p_id=#{p_id},
+        e_user=#{user},
+        e_salary=#{salary},
+        e_reward=#{reward},
+        e_state=#{state},
+        e_u_id=#{u_id}
+        where E_id=#{id}
+    </update>
+    <delete id="delEmployee">
+        DELETE FROM T_EMPLOYEE WHERE E_ID=#{id}
+    </delete>
+    <select id="getAllEmployee" resultMap="employee1">
+        SELECT * FROM T_EMPLOYEE
+    </select>
+    <select id="getEmployeeById" resultMap="employee1">
+        SELECT * FROM T_EMPLOYEE WHERE E_ID=#{id}
+    </select>
+    <select id="getEmployeeByUser" resultMap="employee1">
+        SELECT * FROM T_EMPLOYEE WHERE E_USER=#{user}
+    </select>
+    <select id="getEmployeeByUid" resultMap="employee1">
+        SELECT * FROM T_EMPLOYEE WHERE E_U_ID=#{uid}
+    </select>
+
+    <resultMap id="employee1" type="com.jy.model.Employee">
+        <id property="id" column="e_id"/>
+        <result property="name" column="e_name"/>
+        <result property="pass" column="e_pass"/>
+        <result property="sex" column="e_sex"/>
+        <result property="phone" column="e_phone"/>
+        <result property="mail" column="e_mail"/>
+        <result property="d_id" column="e_d_id"/>
+        <result property="p_id" column="e_p_id"/>
+        <result property="user" column="e_user"/>
+        <result property="salary" column="e_salary"/>
+        <result property="reward" column="e_reward"/>
+    </resultMap>
+</mapper>

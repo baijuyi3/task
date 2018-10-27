@@ -84,7 +84,7 @@
         border-bottom: 1px solid #eee;
     }
     .rbox li {
-        width: 30%;
+        width: 32%;
         text-overflow: ellipsis;
         white-space: nowrap;
     }
@@ -92,10 +92,10 @@
         float: left;
     }
     .rbox .l2{
-        float: right;
+        float: left;
     }
     .rbox .l3{
-        float: left;
+        float: right;
     }
 
     .rbox .rli {
@@ -114,38 +114,6 @@
        <c:if test="${requestScope.msg!=null}">
         alert(${requestScope.msg})
         </c:if>
-
-        <c:if test="${requestScope.departments!=null}">
-        var arr=[];
-            <c:forEach items="${requestScope.departments}" var="k" >
-                arr.push(${k});
-            </c:forEach>
-        <c:if test="${requestScope.options!=null}">
-        <c:forEach items="${requestScope.departments}" var="k" >
-            arr["${k.name}"]=[]; //将元素定义为数组
-            <c:forEach var="j" items="${requestScope.options}">
-            <c:if test="${j.dp_id==k.id}">
-            arr["${k.name}"].push(${j.name}); //shuzu[i][j]可以看作是一个二维数组
-            </c:if>
-            </c:forEach>
-            </c:forEach>
-            </c:if>
-        }
-        </c:if>
-
-        $.each(arr, function (s1) {
-            $("#s1").append("<option value='s1'>" + s1 + "</option>");
-        })
-        $("#s1").change(function () {
-            $("#s2").html("<option>---请选择---</option>");
-            $.each(arr,function (n,e) {
-                if($("#s1 option:selected").text() == n){
-                    $.each(e,function (n1) {
-                        $("#s2").append("<option value='n1'>" + n1 + "</option>");
-                    })
-                }
-            })
-        })
     })
 </script>
 <body>
@@ -179,63 +147,66 @@
     <div class="content">
         <div class="mt">
             <ul class="mt_l">
-                <li class="on">面试申请</li>
+                <li class="on">员工</li>
             </ul>
         </div>
-        <%--*******************************表头*************************************--%>
+        <%--*******************************部门信息*************************************--%>
         <div class="rbox">
             <div class="tit">
                 <ul class="clearfix">
-                    <li class="l1">职位</li>
-                    <li class="l2">操作</li>
+                    <li class="l1">部门</li>
+                    <li class="l2">职位</li>
+                    <li class="l3">人员</li>
                 </ul>
             </div>
-            <%--*******************************员工分配*************************************--%>
-            <c:if test="${requestScope.deliver_3==null}">
-                <span>暂无员工分配</span>
+            <c:if test="${requestScope.departments==null}">
+                <span>暂无部门</span>
             </c:if>
-            <c:if test="${requestScope.deliver_3!=null}">
-                <c:forEach items="${requestScope.deliver_3}" var="i" >
-                    <div class="rli">
-                        <li class="l1">${i.rc_name}</li>
-                        <li class="l2">
-                            <c:if test="${requestScope.options!=null}">
-                            <a href="/save_employee?id=${i.id}">新员工分配</a>
-                            </c:if>
-                            <c:if test="${requestScope.options==null}">
-                                <a href="/position">暂无职位</a>
-                            </c:if>
-                        </li>
-                    </div>
-                </c:forEach>
-            </c:if>
-            <%--*******************************员工分配*************************************--%>
-            <c:if test="${requestScope.deliver!=null}">
-                <form action="/employee_save" method="post">
+            <%--****************部门列表****************--%>
+            <c:if test="${requestScope.departments!=null}">
                 <div class="rli">
-                    <input type="hidden" name="id" value="${requestScope.deliver.id}">
-                    <li class="l1" >
-                        <select name="state">
-                            <option value="1">试用期</option>
-                            <option value="2">正式员工</option>
-                            <option value="3">离职</option>
-                        </select>
-                    </li>
-                    <li class="l3">
-                        <select name="d_name" id="s1">
-                        </select>
-                    </li>
-                    <li class="l2">
-                        <select name="p_name" id="s2">
-                            <option>---请选择---</option>
-                        </select>
-                    </li>
-                    <p>薪资：<input type="text" name="salary"></p>
-                    <input type="submit">
+                    <form action="" method="post">
+                    <li class="l1"><select name="dep"></select></li>
+                    <li class="l2"><select name="pos"></select></li>
+                    <li class="l3"><select name="emp"></select></li>
+                    </form>
                 </div>
-                </form>
             </c:if>
-    </div>
+            <%--****************换岗****************--%>
+            <c:if test="${employee_c!=null}">
+                <div class="rli">
+                    <form action="/update_department">
+                        <table>
+                            <tr>
+                                <td>部门名称：</td>
+                                <td><input type="text" name="name" value="${requestScope.department_u.name}"></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                        </table>
+                        <input class="sub" type="submit">
+                        <a class="sub" href="/department">返回</a>
+                    </form>
+                </div>
+            </c:if>
+            <%--****************转正****************--%>
+            <c:if test="${employee_1!=null}">
+                <div class="rli">
+                    <form action="/save_department" method="post">
+                        <table>
+                            <tr>
+                                <td>部门名称：</td>
+                                <td><input type="text" name="name"></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                        </table>
+                        <input class="sub" type="submit">
+                        <a class="sub" href="/department">返回</a>
+                    </form>
+                </div>
+            </c:if>
+        </div>
 </div>
 </div>
 </body>

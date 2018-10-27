@@ -1,9 +1,6 @@
 package com.jy.controller;
 
-import com.jy.model.Deliver;
-import com.jy.model.Recruit;
-import com.jy.model.Resume;
-import com.jy.model.User;
+import com.jy.model.*;
 import com.jy.service.AdminService;
 import com.jy.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -98,24 +95,36 @@ public class DeliverController {
     }
 
     //*************************收到信息***********************************
+    //面试详细
+    @RequestMapping("/offer")
+    public String offer(int id,Model model, HttpSession session)throws Exception{
+        Deliver deliver=adminService.getDeliverById(id);
+        Employee employee=adminService.getEmployeeByUid(deliver.getU_id());
+        model.addAttribute("employee",employee);
+        return "admin_view/receive";
+    }
     //    面试邀请
     @RequestMapping("/receive")
     public String receive(Model model,HttpSession session){
         User user= (User) session.getAttribute("user");
         List<Deliver> deliver_2=userService.getDeliverByUidAndState(user.getU_id(),2);
+        List<Deliver> deliver_4=userService.getDeliverByUidAndState(user.getU_id(),4);
+        model.addAttribute("deliver_4",deliver_4);
         model.addAttribute("deliver_2",deliver_2);
         return "receive";
     }
 
+    //面试详细
     @RequestMapping("/interview")
     public String interview(int id,Model model, HttpSession session)throws Exception{
         Deliver deliver=adminService.getDeliverById(id);
-        model.addAttribute("deliver",deliver);
+        model.addAttribute("deliver2",deliver);
         return "admin_view/receive";
     }
 
-    @RequestMapping("/deliver_3")
-    public String deliver_3(int id,Model model, HttpSession session)throws Exception{
+    //面试同意
+    @RequestMapping("/deliverto3")
+    public String deliverto3(int id,Model model, HttpSession session)throws Exception{
         Deliver deliver=adminService.getDeliverById(id);
         deliver.setState(3);
         boolean res=adminService.updateDeliver(deliver);
@@ -127,6 +136,8 @@ public class DeliverController {
         model.addAttribute("deliver_2",deliver_2);
         return "receive";
     }
+
+    //面试拒绝
     @RequestMapping("/deliver_5")
     public String deliver_5(int id,Model model, HttpSession session)throws Exception{
         Deliver deliver=adminService.getDeliverById(id);

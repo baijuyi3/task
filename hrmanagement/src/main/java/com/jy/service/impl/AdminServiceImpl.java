@@ -1,13 +1,7 @@
 package com.jy.service.impl;
 
-import com.jy.dao.DeliverDao;
-import com.jy.dao.DepartmentDao;
-import com.jy.dao.PositionDao;
-import com.jy.dao.RecruitDao;
-import com.jy.model.Deliver;
-import com.jy.model.Department;
-import com.jy.model.Position;
-import com.jy.model.Recruit;
+import com.jy.dao.*;
+import com.jy.model.*;
 import com.jy.service.AdminService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -27,6 +21,8 @@ public class AdminServiceImpl implements AdminService {
     private DepartmentDao departmentDao;
     @Autowired
     private PositionDao positionDao;
+    @Autowired
+    private EmployeeDao employeeDao;
 //    ****************************面试流程**********************
     @Override
     public boolean updateDeliver(Deliver deliver) {
@@ -105,6 +101,11 @@ public class AdminServiceImpl implements AdminService {
         return departmentDao.getDepartmentById(id);
     }
 
+    @Override
+    public Department getDepartmentByName(String name) {
+        return departmentDao.getDepartmentByName(name);
+    }
+
     //    **************************职位*********************************
     @Override
     public boolean savePosition(Position position) {
@@ -132,5 +133,49 @@ public class AdminServiceImpl implements AdminService {
     @Override
     public Position getPositionById(int id) {
         return positionDao.getPositionById(id);
+    }
+
+    @Override
+    public Position getPositionByName(String name) {
+        return positionDao.getPositionByName(name);
+    }
+
+    //    ****************************员工*****************************
+    @Override
+    public boolean saveEmployee(Employee employee) {
+        int row=employeeDao.saveEmployee(employee);
+        return true;
+    }
+
+    @Override
+    public boolean delEmployee(int id) {
+        int row=employeeDao.delEmployee(id);
+        return true;
+    }
+
+    @Override
+    public boolean updateEmployee(Employee employee) {
+        int row=employeeDao.updateEmployee(employee);
+        return true;
+    }
+
+    @Override
+    public List<Employee> getAllEmployee() {
+        return employeeDao.getAllEmployee();
+    }
+
+    @Override
+    public Employee getEmployeeById(int id) {
+        return employeeDao.getEmployeeById(id);
+    }
+
+    @Override
+    public Employee getEmployeeByUser(String user) {
+        return employeeDao.getEmployeeByUser(user);
+    }
+
+    @Override
+    public Employee getEmployeeByUid(int uid) {
+        return employeeDao.getEmployeeByUid(uid);
     }
 }

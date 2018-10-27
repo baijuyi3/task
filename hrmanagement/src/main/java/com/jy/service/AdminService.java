@@ -1,9 +1,6 @@
 package com.jy.service;
 
-import com.jy.model.Deliver;
-import com.jy.model.Department;
-import com.jy.model.Position;
-import com.jy.model.Recruit;
+import com.jy.model.*;
 
 import java.util.List;
 
@@ -27,10 +24,20 @@ public interface AdminService {
     boolean updateDepartment(Department department);
     List<Department> getAllDepartment();
     Department getDepartmentById(int id);
+    Department getDepartmentByName(String name);
     //    *********职位**********
     boolean savePosition(Position position);
     boolean delPosition(int id);
     boolean updatePosition(Position position);
     List<Position> getAllPosition();
     Position getPositionById(int id);
+    Position getPositionByName(String name);
+    //    *********员工**********
+    boolean saveEmployee(Employee employee);
+    boolean delEmployee(int id);
+    boolean updateEmployee(Employee employee);
+    List<Employee> getAllEmployee();
+    Employee getEmployeeById(int id);
+    Employee getEmployeeByUser(String user);
+    Employee getEmployeeByUid(int uid);
 }

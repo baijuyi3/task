@@ -13,4 +13,5 @@ public interface PositionDao {
     int updatePosition(Position position);
     List<Position> getAllPosition();
     Position getPositionById(int id);
+    Position getPositionByName(String name);
 }

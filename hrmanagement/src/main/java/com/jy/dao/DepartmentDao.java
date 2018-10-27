@@ -13,4 +13,5 @@ public interface DepartmentDao {
     int updateDepartment(Department department);
     List<Department> getAllDepartment();
     Department getDepartmentById(int id);
+    Department getDepartmentByName(String name);
 }

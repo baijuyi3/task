@@ -16,6 +16,9 @@
     <select id="getPositionById" resultMap="position1">
         SELECT * FROM T_POSITION WHERE p_id=#{id}
     </select>
+    <select id="getPositionByName" resultMap="position1">
+        SELECT * FROM T_POSITION WHERE P_NAME=#{name}
+    </select>
 
     <resultMap id="position1" type="com.jy.model.Position">
         <id column="p_id" property="id"/>

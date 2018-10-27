@@ -142,7 +142,7 @@
                 </li>
             </ul>
         </div>
-        <%--*******************************简历*************************************--%>
+        <%--*******************************面试消息*************************************--%>
         <div class="rbox">
             <div class="tit">
                 <ul class="clearfix">
@@ -150,9 +150,21 @@
                     <li class="l2">职位</li>
                 </ul>
             </div>
-            <c:if test="${requestScope.deliver_2==null}">
-                <span>暂无面试</span>
+            <c:if test="${requestScope.deliver_2==null&&requestScope.deliver_4==null}">
+                <span>暂无消息</span>
             </c:if>
+            <%--*******************************面试消息*************************************--%>
+            <c:if test="${requestScope.deliver_4!=null}">
+                <c:forEach items="${requestScope.deliver_4}" var="i" >
+                    <div class="rli">
+                        <li class="l1"><a href="/offer?id=${i.id}">offer!</a></li>
+                        <li class="l2">${i.rc_name}</li>
+                    </div>
+                </c:forEach>
+                </table>
+                <br>
+            </c:if>
+            <%----------------------------------------------%>
             <c:if test="${requestScope.deliver_2!=null}">
                     <c:forEach items="${requestScope.deliver_2}" var="i" >
                         <div class="rli">
@@ -162,7 +174,8 @@
                     </c:forEach>
                 </table>
             </c:if>
-            <c:if test="${requestScope.deliver!=null}">
+            <%--*******************************消息详细*************************************--%>
+            <c:if test="${requestScope.deliver2!=null}">
                     <div class="rli">
                         <p>Dear:${sessionScope.user.u_name}</p>
                         <p></p>
@@ -172,9 +185,23 @@
                         <p>面试岗位：${requestScope.deliver.rc_name}</p>
                         <p>时间：${requestScope.deliver.interv_date}</p>
                         <p>请及时回复，是否能准时参加面试！</p>
-                        <a href="/deliver_3?id=${requestScope.deliver.id}" class="sub">同意</a>
+                        <a href="/deliverto3?id=${requestScope.deliver.id}" class="sub">同意</a>
                         <a href="/deliver_5?id=${requestScope.deliver.id}" class="sub">拒绝</a>
                     </div>
+                </table>
+            </c:if>
+            <%--*******************************offer详细*************************************--%>
+            <c:if test="${requestScope.employee!=null}">
+                <div class="rli">
+                    <p>Dear:${sessionScope.employee.name}</p>
+                    <p></p>
+                    <p>您已经被我司录用，以下是您的用户名和密码：</p>
+                    <p></p>
+                    <p>账户：${requestScope.employee.user}</p>
+                    <p>密码：${requestScope.employee.pass}</p>
+                    <p>请及时确认！</p>
+                    <a href="/receive" class="sub">返回</a>
+                </div>
                 </table>
             </c:if>
     </div>

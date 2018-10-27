@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<script type="text/javascript" src="jquery-3.2.1.js"></script>
+<script>
+    $(function () {
+        var shuzu=new Array(); //定义一维数组
+        shuzu=["aaa","bbb","ccc"];
+        for(var i=0;i<3;i++){
+            shuzu[shuzu[i]]=[]; //将元素定义为数组
+            for(j=0;j<3;j++)
+            {
+                shuzu[shuzu[i]].push(i*3+j+1); //shuzu[i][j]可以看作是一个二维数组
+            }
+        }
+
+        console.log(shuzu);
+        var arr = ["上海市","安徽省","江苏省"];
+        arr["上海市"]=["徐汇区","静安区","黄浦区"];
+        arr["安徽省"]=["合肥市","芜湖市","阜阳市"];
+        arr["江苏省"]=["南京市","泰州市","无锡市"];
+
+        console.log(arr);
+
+    })
+</script>
+<body>
+
+</body>
+</html>
