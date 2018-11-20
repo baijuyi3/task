@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.jy.dao.AttendDao">
+    <insert id="saveAttend">
+        INSERT INTO T_ATTEND(A_ID, A_E_ID, A_MORNING) VALUES (ATTEND_SEQ.nextval,#{e_id},SYSDATE)
+    </insert>
+    <update id="updateAttend">
+        UPDATE T_ATTEND SET A_AFTERNOON=#{afternoon} where a_id=#{id}
+    </update>
+    <select id="getAttendsByEidAndMM" resultMap="attend1">
+        SELECT * FROM T_ATTEND WHERE A_E_ID=#{arg0} and to_char(A_MORNING,'yyyy-mm')=#{arg1}
+    </select>
+    <select id="getAttendsByEidAndDD" resultMap="attend1">
+         SELECT * FROM T_ATTEND WHERE A_E_ID=#{arg0} and to_char(A_MORNING,'yyyy-mm-dd')=#{arg1}
+    </select>
+
+    <resultMap id="attend1" type="com.jy.model.Attend">
+        <id property="id" column="a_id"/>
+        <result property="e_id" column="a_e_id"/>
+        <result property="morning" column="a_morning"/>
+        <result property="afternoon" column="a_afternoon"/>
+    </resultMap>
+</mapper>

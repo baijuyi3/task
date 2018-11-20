@@ -104,6 +104,7 @@
         background-color: #fff;
         border-bottom: 1px solid #eee;
     }
+    p{ text-align: left}
 </style>
 <body>
 <div class="p-wrap">
@@ -127,19 +128,14 @@
 </div>
 <div class="wrap">
     <div class="side">
-        <span><a href="#">我的简历</a></span>
-        <span><a href="#">我的信息</a></span>
-        <span><a href="#">我的投递</a></span>
+        <span><a href="/resume">我的简历</a></span>
+        <span><a href="/receive">我的信息</a></span>
+        <span><a href="/deliver">我的投递</a></span>
     </div>
     <div class="content">
         <div class="mt">
             <ul class="mt_l">
-                <li class="on">简历中心</li>
-            </ul>
-            <ul class="mt_r">
-                <li>
-                    <a class="a" href="/save_resume">创建简历</a>
-                </li>
+                <li class="on">信息中心</li>
             </ul>
         </div>
         <%--*******************************面试消息*************************************--%>
@@ -150,10 +146,10 @@
                     <li class="l2">职位</li>
                 </ul>
             </div>
-            <c:if test="${requestScope.deliver_2==null&&requestScope.deliver_4==null}">
+            <c:if test="${requestScope.deliver_2==null&&requestScope.deliver_4==null&&requestScope.employee!=null}">
                 <span>暂无消息</span>
             </c:if>
-            <%--*******************************面试消息*************************************--%>
+            <%--*******************************offer消息*************************************--%>
             <c:if test="${requestScope.deliver_4!=null}">
                 <c:forEach items="${requestScope.deliver_4}" var="i" >
                     <div class="rli">
@@ -162,7 +158,7 @@
                     </div>
                 </c:forEach>
                 </table>
-                <br>
+                <hr>
             </c:if>
             <%----------------------------------------------%>
             <c:if test="${requestScope.deliver_2!=null}">
@@ -182,11 +178,12 @@
                         <p>你好，真诚邀请您参加我司的面试，请回复确认以下面试安排！</p>
                         <p></p>
                         <p>面试安排：</p>
-                        <p>面试岗位：${requestScope.deliver.rc_name}</p>
-                        <p>时间：${requestScope.deliver.interv_date}</p>
+                        <p>面试地点：${requestScope.deliver2.place}</p>
+                        <p>面试岗位：${requestScope.deliver2.rc_name}</p>
+                        <p>时间：${requestScope.deliver2.interv_date}</p>
                         <p>请及时回复，是否能准时参加面试！</p>
-                        <a href="/deliverto3?id=${requestScope.deliver.id}" class="sub">同意</a>
-                        <a href="/deliver_5?id=${requestScope.deliver.id}" class="sub">拒绝</a>
+                        <button onclick="window.location.href='/deliverto3?id=${requestScope.deliver2.id}'" class="sub">同意</button>
+                        <button onclick="window.location.href='/deliver_5?id=${requestScope.deliver2.id}'" class="sub">拒绝</button>
                     </div>
                 </table>
             </c:if>

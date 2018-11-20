@@ -117,31 +117,29 @@
 
         <c:if test="${requestScope.departments!=null}">
         var arr=[];
-            <c:forEach items="${requestScope.departments}" var="k" >
-                arr.push(${k});
-            </c:forEach>
-        <c:if test="${requestScope.options!=null}">
+        <c:if test="${requestScope.positions!=null}">
         <c:forEach items="${requestScope.departments}" var="k" >
-            arr["${k.name}"]=[]; //将元素定义为数组
-            <c:forEach var="j" items="${requestScope.options}">
-            <c:if test="${j.dp_id==k.id}">
-            arr["${k.name}"].push(${j.name}); //shuzu[i][j]可以看作是一个二维数组
-            </c:if>
-            </c:forEach>
-            </c:forEach>
-            </c:if>
-        }
+        arr.push("${k.name}");
+        arr["${k.name}"]=[]; //将元素定义为数组
+        <c:forEach var="j" items="${requestScope.positions}">
+        <c:if test="${j.dp_id==k.id}">
+        arr["${k.name}"].push("${j.name}"); //shuzu[i][j]可以看作是一个二维数组
+        </c:if>
+        </c:forEach>
+        </c:forEach>
+        </c:if>
         </c:if>
 
-        $.each(arr, function (s1) {
-            $("#s1").append("<option value='s1'>" + s1 + "</option>");
-        })
+        console.log(arr);
+        $.each(arr, function (n,e) {
+            $("#s1").append("<option>" +e + "</option>");
+        });
         $("#s1").change(function () {
             $("#s2").html("<option>---请选择---</option>");
             $.each(arr,function (n,e) {
-                if($("#s1 option:selected").text() == n){
-                    $.each(e,function (n1) {
-                        $("#s2").append("<option value='n1'>" + n1 + "</option>");
+                if($("#s1 option:selected").text() == e){
+                    $.each(arr[e],function (n1,e1) {
+                        $("#s2").append("<option>" + e1 + "</option>");
                     })
                 }
             })
@@ -157,7 +155,7 @@
                 <p class="right">
                     <a href="/view" >招聘信息</a>
                     <span class="l">|</span>
-                    <a href="/resume">简历信息</a>
+                    <a href="/" >注销</a>
                 </p>
                 <div class="uer">
                     <p class="op">
@@ -170,11 +168,16 @@
 </div>
 <div class="wrap">
     <div class="side">
-        <span><a href="/deliver-1">面试申请</a></span>
+        <span><a href="/deliver_1">面试申请</a></span>
         <span><a href="/deliver_3">员工分配</a></span>
         <span><a href="/recruit">招聘信息</a></span>
         <span><a href="/department">部门</a></span>
         <span><a href="/position">职位</a></span>
+        <span><a href="/employee">员工信息</a></span>
+        <span><a href="/train">培训</a></span>
+        <span><a href="/reward">奖惩</a></span>
+        <span><a href="/recheck">复议</a></span>
+        <span><a href="/account">薪资结算</a></span>
     </div>
     <div class="content">
         <div class="mt">
@@ -191,18 +194,18 @@
                 </ul>
             </div>
             <%--*******************************员工分配*************************************--%>
-            <c:if test="${requestScope.deliver_3==null}">
+            <c:if test="${empty requestScope.deliver_3}">
                 <span>暂无员工分配</span>
             </c:if>
-            <c:if test="${requestScope.deliver_3!=null}">
+            <c:if test="${not empty requestScope.deliver_3}">
                 <c:forEach items="${requestScope.deliver_3}" var="i" >
                     <div class="rli">
                         <li class="l1">${i.rc_name}</li>
                         <li class="l2">
-                            <c:if test="${requestScope.options!=null}">
+                            <c:if test="${not empty requestScope.positions}">
                             <a href="/save_employee?id=${i.id}">新员工分配</a>
                             </c:if>
-                            <c:if test="${requestScope.options==null}">
+                            <c:if test="${empty requestScope.positions}">
                                 <a href="/position">暂无职位</a>
                             </c:if>
                         </li>
@@ -210,7 +213,7 @@
                 </c:forEach>
             </c:if>
             <%--*******************************员工分配*************************************--%>
-            <c:if test="${requestScope.deliver!=null}">
+            <c:if test="${not empty requestScope.deliver}">
                 <form action="/employee_save" method="post">
                 <div class="rli">
                     <input type="hidden" name="id" value="${requestScope.deliver.id}">
@@ -223,6 +226,7 @@
                     </li>
                     <li class="l3">
                         <select name="d_name" id="s1">
+                            <option>---请选择---</option>
                         </select>
                     </li>
                     <li class="l2">
@@ -230,6 +234,7 @@
                             <option>---请选择---</option>
                         </select>
                     </li>
+                    <br>
                     <p>薪资：<input type="text" name="salary"></p>
                     <input type="submit">
                 </div>

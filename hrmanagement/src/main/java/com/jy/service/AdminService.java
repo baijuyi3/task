@@ -37,7 +37,39 @@ public interface AdminService {
     boolean delEmployee(int id);
     boolean updateEmployee(Employee employee);
     List<Employee> getAllEmployee();
+    List<Employee> getEmployeeByDid(int did);
     Employee getEmployeeById(int id);
     Employee getEmployeeByUser(String user);
     Employee getEmployeeByUid(int uid);
+    //    *********培训**********
+    boolean saveTrain(Train train);
+    boolean delTrain(int id);
+    boolean updateTrain(Train train);
+    List<Train> getAllTrain();
+    Train getTrainById(int id);
+    //    *********培训记录**********
+    boolean saveTrainRecord(TrainRecord trainRecord);
+    boolean delTrainRecord(int id);
+    boolean updateTrainRecord(TrainRecord trainRecord);
+    List<TrainRecord> getAllTrainRecord();
+    TrainRecord getTrainRecordById(int id);
+    List<TrainRecord> getTrainRecordByEid(int eid);
+    //    *********奖惩**********
+    boolean saveReward(Reward reward);
+    boolean updateReward(Reward reward);
+    List<Reward> getAllReward();
+    List<Reward> getRewardByEid(int eid);
+    List<Reward> getRewardByEidAndTime(int eid,String time);
+    Reward getRewardById(int id);
+    //************复议**************
+    boolean saveCheck(Check check);
+    boolean updateCheck(Check check);
+    List<Check> getCheckByState(int state);
+    Check getCheckById(int id);
+    //************薪资**************
+    boolean saveSalary(Salary salary);
+    List<Salary> getSalaryByEid(int eid);
+    List<Salary> getSalaryByTime(String  time);
+    Salary getSalaryByEidAndTime(int eid ,String time);
+    List<Attend> getAttendsByEidAndMM(int eid,String yyyymm);
 }

@@ -37,6 +37,9 @@ public class UserController {
 //    ********************************登入注册****************************************
     @RequestMapping("/login")
     public String login(User user, HttpSession session, Model model)throws Exception{
+        if(user.getU_name()==null&&user.getU_pass()==null){
+            return "../../login";
+        }
         User user1=userService.getUserByNameAndPass(user);
         if(null!=user1){
             session.setAttribute("user",user1);
@@ -51,6 +54,11 @@ public class UserController {
 
     @RequestMapping("/register")
     public String register(User user,Model model)throws Exception{
+        return "../../register";
+    }
+
+    @RequestMapping("/register_1")
+    public String register_1(User user,Model model)throws Exception{
         User user1=new User();
 //        System.out.println(user);
         user1.setU_name(user.getU_name());

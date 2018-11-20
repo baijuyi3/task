@@ -122,7 +122,7 @@
                 <p class="right">
                     <a href="/view" >招聘信息</a>
                     <span class="l">|</span>
-                    <a href="/resume">简历信息</a>
+                    <a href="/" >注销</a>
                 </p>
                 <div class="uer">
                     <p class="op">
@@ -135,11 +135,16 @@
 </div>
 <div class="wrap">
     <div class="side">
-        <span><a href="/deliver-1">面试申请</a></span>
+        <span><a href="/deliver_1">面试申请</a></span>
         <span><a href="/deliver_3">员工分配</a></span>
         <span><a href="/recruit">招聘信息</a></span>
         <span><a href="/department">部门</a></span>
         <span><a href="/position">职位</a></span>
+        <span><a href="/employee">员工信息</a></span>
+        <span><a href="/train">培训</a></span>
+        <span><a href="/reward">奖惩</a></span>
+        <span><a href="/recheck">复议</a></span>
+        <span><a href="/account">薪资结算</a></span>
     </div>
     <div class="content">
         <div class="mt">
@@ -161,9 +166,9 @@
             <c:if test="${requestScope.deliver_1!=null}">
                     <c:forEach items="${requestScope.deliver_1}" var="i" >
                         <div class="rli">
-                            <li class="l1"><a href="/deliver_info?id=${i.d_id}">${i.rc_name}</a></li>
+                            <li class="l1"><a href="/deliver_info?id=${i.id}">${i.rc_name}</a></li>
                             <li class="l2">
-                                <a href="#">新申请</a>
+                                <a href="/deliver_info?id=${i.id}">新申请</a>
                             </li>
                         </div>
                     </c:forEach>

@@ -19,7 +19,7 @@
         SELECT u_id ,u_name ,u_pass ,u_sex from T_USER
         <where>
             <if test="u_name!=null">
-                AND u_name=#{u_name}
+                u_name=#{u_name}
             </if>
             <if test="u_pass!=null">
                 AND u_pass=#{u_pass}

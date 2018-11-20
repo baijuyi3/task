@@ -20,7 +20,7 @@
 <script type="text/javascript" src="js/jquery-3.2.1.js"></script>
 <script>
     $(function () {
-        $("[name=u_name]").blur(function () {
+        $("input[name=u_name]").blur(function () {
             $.ajax({
                 type:"get",
                 url:"check_user",
@@ -40,9 +40,10 @@
     <div class="login_logo"><h1>REGIST</h1></div>
     <div class="login_border">
         <div class="login_padding">
-            <form action="register" method="post">
+            <form action="register_1" method="post">
                 <h2>USERNAME</h2>
                 <span><input type="text" name="u_name"></span>
+                <p></p>
                 <h2>PASSWORD</h2>
                 <span><input type="password" name="u_pass" ></span>
                 <div><h2>gender</h2><h2 style="color:red;"><c:out value="${requestScope.msg}"/></h2></div>

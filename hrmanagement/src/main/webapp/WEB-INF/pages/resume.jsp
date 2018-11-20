@@ -127,6 +127,8 @@
                 <div class="uer">
                     <p class="op">
                         ${sessionScope.user.u_name}:已登录
+                            <span class="l">|</span>
+                            <a href="/" >注销</a>
                     </p>
                 </div>
             </div>
@@ -135,9 +137,9 @@
 </div>
 <div class="wrap">
     <div class="side">
-        <span><a href="#">我的简历</a></span>
+        <span><a href="/resume">我的简历</a></span>
         <span><a href="/receive">我的信息</a></span>
-        <span><a href="#">我的投递</a></span>
+        <span><a href="/deliver">我的投递</a></span>
     </div>
     <div class="content">
         <div class="mt">
@@ -158,7 +160,7 @@
                     <li class="l2">操作</li>
                 </ul>
             </div>
-            <c:if test="${requestScope.resumes==null}">
+            <c:if test="${empty requestScope.resumes}">
                 <span>暂无简历</span>
             </c:if>
             <c:if test="${requestScope.resumes!=null}">

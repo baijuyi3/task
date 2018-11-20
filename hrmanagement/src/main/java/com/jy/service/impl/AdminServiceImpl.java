@@ -23,6 +23,18 @@ public class AdminServiceImpl implements AdminService {
     private PositionDao positionDao;
     @Autowired
     private EmployeeDao employeeDao;
+    @Autowired
+    private TrainDao trainDao;
+    @Autowired
+    private TrainRecordDao trainRecordDao;
+    @Autowired
+    private RewardDao rewardDao;
+    @Autowired
+    private CheckDao checkDao;
+    @Autowired
+    private SalaryDao salaryDao;
+    @Autowired
+    private AttendDao attendDao;
 //    ****************************面试流程**********************
     @Override
     public boolean updateDeliver(Deliver deliver) {
@@ -165,6 +177,11 @@ public class AdminServiceImpl implements AdminService {
     }
 
     @Override
+    public List<Employee> getEmployeeByDid(int did) {
+        return employeeDao.getEmployeeByDid(did);
+    }
+
+    @Override
     public Employee getEmployeeById(int id) {
         return employeeDao.getEmployeeById(id);
     }
@@ -177,5 +194,154 @@ public class AdminServiceImpl implements AdminService {
     @Override
     public Employee getEmployeeByUid(int uid) {
         return employeeDao.getEmployeeByUid(uid);
+    }
+
+    //    ****************************培训*****************************
+
+    @Override
+    public boolean saveTrain(Train train) {
+        int row=trainDao.saveTrain(train);
+        return true;
+    }
+
+    @Override
+    public boolean delTrain(int id) {
+        int row=trainDao.delTrain(id);
+        return true;
+    }
+
+    @Override
+    public boolean updateTrain(Train train) {
+        int row=trainDao.updateTrain(train);
+        return true;
+    }
+
+    @Override
+    public List<Train> getAllTrain() {
+        return trainDao.getAllTrain();
+    }
+
+    @Override
+    public Train getTrainById(int id) {
+        return trainDao.getTrainById(id);
+    }
+
+    //    *********培训记录**********
+
+    @Override
+    public boolean saveTrainRecord(TrainRecord trainRecord) {
+        int row=trainRecordDao.saveTrainRecord(trainRecord);
+        return true;
+    }
+
+    @Override
+    public boolean delTrainRecord(int id) {
+        int row=trainRecordDao.delTrainRecord(id);
+        return true;
+    }
+
+    @Override
+    public boolean updateTrainRecord(TrainRecord trainRecord) {
+        int row=trainRecordDao.updateTrainRecord(trainRecord);
+        return true;
+    }
+
+    @Override
+    public List<TrainRecord> getAllTrainRecord() {
+        return trainRecordDao.getAllTrainRecord();
+    }
+
+    @Override
+    public TrainRecord getTrainRecordById(int id) {
+        return trainRecordDao.getTrainRecordById(id);
+    }
+
+    @Override
+    public List<TrainRecord> getTrainRecordByEid(int eid) {
+        return trainRecordDao.getTrainRecordByEid(eid);
+    }
+
+    //******************************奖惩**************************
+    @Override
+    public boolean saveReward(Reward reward) {
+        int row=rewardDao.saveReward(reward);
+        return true;
+    }
+
+    @Override
+    public boolean updateReward(Reward reward) {
+        int row=rewardDao.updateReward(reward);
+        return true;
+    }
+
+    @Override
+    public List<Reward> getAllReward() {
+        return rewardDao.getAllReward();
+    }
+
+    @Override
+    public List<Reward> getRewardByEid(int eid) {
+        return rewardDao.getRewardByEid(eid);
+    }
+
+    @Override
+    public List<Reward> getRewardByEidAndTime(int eid, String time) {
+        return rewardDao.getRewardByEidAndTime(eid, time);
+    }
+
+    @Override
+    public Reward getRewardById(int id) {
+        return rewardDao.getRewardById(id);
+    }
+
+    //******************************复议**************************
+
+    @Override
+    public boolean saveCheck(Check check) {
+        int row=checkDao.saveCheck(check);
+        return true;
+    }
+
+    @Override
+    public boolean updateCheck(Check check) {
+        int row=checkDao.updateCheck(check);
+        return true;
+    }
+
+    @Override
+    public List<Check> getCheckByState(int state) {
+        return checkDao.getCheckByState(state);
+    }
+
+    @Override
+    public Check getCheckById(int id) {
+        return checkDao.getCheckById(id);
+    }
+
+    //******************薪资
+    @Override
+    public boolean saveSalary(Salary salary) {
+        int row=salaryDao.saveSalary(salary);
+        return true;
+    }
+
+    @Override
+    public List<Salary> getSalaryByEid(int eid) {
+        return salaryDao.getSalaryByEid(eid);
+    }
+
+    @Override
+    public List<Salary> getSalaryByTime(String  time) {
+        return salaryDao.getSalaryByTime(time);
+    }
+
+    @Override
+    public Salary getSalaryByEidAndTime(int eid, String time) {
+        return salaryDao.getSalaryByEidAndTime(eid, time);
+    }
+
+    @Override
+    public List<Attend> getAttendsByEidAndMM(int eid, String yyyymm) {
+        return attendDao.getAttendsByEidAndMM(eid, yyyymm);
     }
 }

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.jy.dao.SalaryDao">
+    <insert id="saveSalary">
+        INSERT INTO T_SALARY VALUES (SALARY_SEQ.nextval,#{e_id},#{base},#{bonus},#{extra},#{reward},#{safe},#{date},#{total})
+    </insert>
+    <select id="getSalaryByEid" resultMap="salary1">
+        SELECT * FROM T_SALARY WHERE S_E_ID=#{eid}
+    </select>
+    <select id="getSalaryByEidAndTime" resultMap="salary1">
+        SELECT * FROM T_SALARY WHERE S_E_ID=#{arg0} and s_date=#{arg1}
+    </select>
+    <select id="getSalaryByTime" resultMap="salary1">
+        SELECT * FROM T_SALARY WHERE s_date=#{time}
+    </select>
+
+    <resultMap id="salary1" type="com.jy.model.Salary">
+        <id property="id" column="s_id"/>
+        <result property="e_id" column="s_e_id"/>
+        <result property="base" column="s_base"/>
+        <result property="bonus" column="s_bonus"/>
+        <result property="extra" column="s_extra"/>
+        <result property="reward" column="s_reward"/>
+        <result property="safe" column="s_safe"/>
+        <result property="date" column="s_date"/>
+        <result property="total" column="s_total"/>
+    </resultMap>
+</mapper>

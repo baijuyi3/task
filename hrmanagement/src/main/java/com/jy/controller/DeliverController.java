@@ -36,8 +36,11 @@ public class DeliverController {
         return  "view";
     }
     @RequestMapping("/resume_choose")
-    public String resume_choose(int rc_id,int rc_name, Model model, HttpSession session)throws Exception{
+    public String resume_choose(int rc_id,String  rc_name, Model model, HttpSession session)throws Exception{
         User user= (User) session.getAttribute("user");
+        if(user==null){
+            return "../../login";
+        }
         Deliver deliver=userService.getDeliverByUidAndRcid(user.getU_id(),rc_id);
         System.out.println(deliver);
         if(deliver!=null){
@@ -47,6 +50,9 @@ public class DeliverController {
         model.addAttribute("rc_id",rc_id);
         model.addAttribute("rc_name",rc_name);
         List<Resume> resumes=userService.getResumeByUid(user.getU_id());
+        if(resumes.size()==0){
+            return "resume";
+        }
         model.addAttribute("resumes",resumes);
         return "resume_choose";
     }
@@ -61,7 +67,7 @@ public class DeliverController {
         return "deliver_info";
     }
     @RequestMapping("/deliver_1")
-    public String deliver_1(int id,Model model, HttpSession session)throws Exception{
+    public String deliver_1(Model model, HttpSession session)throws Exception{
         List<Deliver> deliver_1=userService.getDeliverByState(1);
         model.addAttribute("deliver_1",deliver_1);
         return "admin_view/deliver_1";
@@ -101,7 +107,7 @@ public class DeliverController {
         Deliver deliver=adminService.getDeliverById(id);
         Employee employee=adminService.getEmployeeByUid(deliver.getU_id());
         model.addAttribute("employee",employee);
-        return "admin_view/receive";
+        return "receive";
     }
     //    面试邀请
     @RequestMapping("/receive")
@@ -119,7 +125,7 @@ public class DeliverController {
     public String interview(int id,Model model, HttpSession session)throws Exception{
         Deliver deliver=adminService.getDeliverById(id);
         model.addAttribute("deliver2",deliver);
-        return "admin_view/receive";
+        return "receive";
     }
 
     //面试同意
@@ -150,5 +156,13 @@ public class DeliverController {
         List<Deliver> deliver_2=userService.getDeliverByUidAndState(user.getU_id(),2);
         model.addAttribute("deliver_2",deliver_2);
         return "receive";
+    }
+    //*************************收到信息***********************************
+    @RequestMapping("/deliver")
+    public String deliver(Model model, HttpSession session)throws Exception{
+        User user= (User) session.getAttribute("user");
+        List<Deliver> delivers=userService.getDeliverByUid(user.getU_id());
+        model.addAttribute("delivers",delivers);
+        return "deliver";
     }
 }

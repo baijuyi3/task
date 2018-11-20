@@ -122,7 +122,7 @@
                 <p class="right">
                     <a href="/view" >招聘信息</a>
                     <span class="l">|</span>
-                    <a href="/resume">简历信息</a>
+                    <a href="/" >注销</a>
                 </p>
                 <div class="uer">
                     <p class="op">
@@ -135,28 +135,33 @@
 </div>
 <div class="wrap">
     <div class="side">
-        <span><a href="/deliver-1">面试申请</a></span>
+        <span><a href="/deliver_1">面试申请</a></span>
         <span><a href="/deliver_3">员工分配</a></span>
         <span><a href="/recruit">招聘信息</a></span>
         <span><a href="/department">部门</a></span>
         <span><a href="/position">职位</a></span>
+        <span><a href="/employee">员工信息</a></span>
+        <span><a href="/train">培训</a></span>
+        <span><a href="/reward">奖惩</a></span>
+        <span><a href="/recheck">复议</a></span>
+        <span><a href="/account">薪资结算</a></span>
     </div>
     <div class="content">
         <div class="mt">
             <ul class="mt_l">
                 <li class="on">面试申请</li>
             </ul>
-            <c:if test="${requestScope.departments==null}">
+            <c:if test="${empty requestScope.departments}">
                 <ul class="mt_r">
                     <li>
                         <a class="a" href="/department">暂无部门</a>
                     </li>
                 </ul>
             </c:if>
-            <c:if test="${requestScope.departments!=null}">
+            <c:if test="${not empty requestScope.departments}">
                 <ul class="mt_r">
                     <li>
-                        <a class="a" href="/department_save">新建职位</a>
+                        <a class="a" href="/position_save">新建职位</a>
                     </li>
                 </ul>
             </c:if>
@@ -169,11 +174,11 @@
                     <li class="l2">操作</li>
                 </ul>
             </div>
-            <c:if test="${requestScope.recruits==null}">
+            <c:if test="${empty requestScope.positions&&empty requestScope.position_u&&empty requestScope.position_s}">
                 <span>暂无职位</span>
             </c:if>
             <%--****************职位列表****************--%>
-            <c:if test="${requestScope.positions!=null}">
+            <c:if test="${not empty requestScope.positions}">
                 <c:forEach items="${requestScope.positions}" var="i" >
                     <div class="rli">
                         <li class="l1">${i.name}</li>
@@ -185,7 +190,7 @@
                 </c:forEach>
             </c:if>
             <%--****************职位更新****************--%>
-            <c:if test="${requestScope.position_u!=null}">
+            <c:if test="${not empty requestScope.position_u}">
                 <div class="rli">
                     <form action="/update_position">
                         <table>
@@ -208,7 +213,7 @@
                 </div>
             </c:if>
             <%--****************新建职位****************--%>
-            <c:if test="${requestScope.position_s!=null}">
+            <c:if test="${not empty requestScope.position_s}">
                 <div class="rli">
                     <form action="/save_position" method="post">
                         <table>

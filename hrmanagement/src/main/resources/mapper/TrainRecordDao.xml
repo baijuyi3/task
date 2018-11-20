@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.jy.dao.TrainRecordDao">
+    <insert id="saveTrainRecord">
+        INSERT INTO T_TRAIN_RECORD VALUES (TRAIN_RECORD_SEQ.nextval,#{t_id},#{e_id},#{state})
+    </insert>
+    <update id="updateTrainRecord">
+        UPDATE T_TRAIN_RECORD SET TR_STATE=#{state} where tr_id=#{id}
+    </update>
+    <delete id="delTrainRecord">
+        DELETE FROM T_TRAIN_RECORD WHERE tr_id=#{id}
+    </delete>
+    <select id="getAllTrainRecord" resultMap="trainRecord1">
+        SELECT * FROM T_TRAIN_RECORD
+    </select>
+    <select id="getTrainRecordById" resultMap="trainRecord1">
+        SELECT * FROM T_TRAIN_RECORD WHERE tr_id=#{id}
+    </select>
+    <select id="getTrainRecordByEid" resultMap="trainRecord1">
+        SELECT * FROM T_TRAIN_RECORD WHERE tr_e_id=#{eid}
+    </select>
+
+    <resultMap id="trainRecord1" type="com.jy.model.TrainRecord">
+        <id column="tr_id" property="id"/>
+        <result column="tr_t_id" property="t_id"/>
+        <result column="tr_e_id" property="e_id"/>
+        <result column="tr_state" property="state"/>
+    </resultMap>
+</mapper>

@@ -8,7 +8,7 @@
     <update id="updateDeliver">
         UPDATE T_DELIVER SET
         D_STATE=#{state},
-        D_date=#{date},
+        D_date=#{date,jdbcType=VARCHAR},
         D_interv_date=#{interv_date},
         d_place=#{place}
         where d_id=#{id}

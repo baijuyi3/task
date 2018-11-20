@@ -12,6 +12,7 @@ public interface EmployeeDao {
     int delEmployee(int id);
     int updateEmployee(Employee employee);
     List<Employee> getAllEmployee();
+    List<Employee> getEmployeeByDid(int did);
     Employee getEmployeeById(int id);
     Employee getEmployeeByUser(String user);
     Employee getEmployeeByUid(int uid);

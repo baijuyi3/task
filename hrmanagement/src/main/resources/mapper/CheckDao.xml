@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.jy.dao.CheckDao">
+    <insert id="saveCheck">
+        INSERT INTO T_RECHECK VALUES (RECHECK_SEQ.nextval,#{r_id},#{e_id},#{reason},#{state})
+    </insert>
+    <update id="updateCheck">
+        UPDATE T_RECHECK SET K_STATE=#{state} Where k_id=#{id}
+    </update>
+    <select id="getCheckByState" resultMap="check1">
+        SELECT * FROM T_RECHECK WHERE K_STATE=#{state}
+    </select>
+    <select id="getCheckById" resultMap="check1">
+        SELECT * FROM T_RECHECK WHERE k_id=#{id}
+    </select>
+
+    <resultMap id="check1" type="com.jy.model.Check">
+        <id property="id" column="k_id"/>
+        <result property="r_id" column="k_r_id"/>
+        <result property="e_id" column="k_e_id"/>
+        <result property="reason" column="k_reason"/>
+        <result property="state" column="k_state"/>
+    </resultMap>
+</mapper>

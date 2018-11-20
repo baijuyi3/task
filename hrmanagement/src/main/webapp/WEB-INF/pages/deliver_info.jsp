@@ -162,7 +162,7 @@
                 </tr>
             </table>
 
-        <form action="deliver_2">
+        <form action="deliver_2" method="post">
             <table>
                 <tr>
                     <td>面试时间：</td>
@@ -173,7 +173,7 @@
             </table>
             <input type="hidden" name="id" value="${d_id}">
             <input id="sub" type="submit" value="同意">&nbsp;&nbsp;&nbsp;&nbsp;
-            <a id="ref" href="/deliver_0?id=${d_id}">拒绝</a>
+            <button type="button" id="ref" href="/deliver_0?id=${d_id}">拒绝</button>
         </form>
     </div>
 </div>

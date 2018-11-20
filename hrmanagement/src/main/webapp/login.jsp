@@ -39,6 +39,7 @@
                     <h2 style="color:red;"><c:out value="${requestScope.msg}"/></h2>
                     <div class="button" onclick="$('form').submit()">&nbsp;&nbsp;登入&nbsp;&nbsp;</div>
                     <div class="button" onclick="window.location.href='register.jsp'">&nbsp;&nbsp;注册&nbsp;&nbsp;</div>
+                    <br><br><a href="/emp_login">员工登入</a>
                 </form>
             </div>
         </div>

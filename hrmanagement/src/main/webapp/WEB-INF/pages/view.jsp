@@ -63,7 +63,7 @@
                                     <a href="#" data-promid="ims" target="_blank"
                                        onclick="tlog=window.tlog||[];tlog.push('c:w_sojob_jobclick_9')">
                                         理财事业部投资经理（金融市场部） </a>
-                                    <a href="/resume_choose?rc_id=${i.id}" style="float: right;margin-left: 10px;background: orange;color: #fff">申请</a>
+                                    <a href="/#" style="float: right;margin-left: 10px;background: orange;color: #fff">申请</a>
                                 </h3>
                                 <p class="condition clearfix"
                                    title="24-60万_上海-陆家嘴_本科及以上_3年以上">

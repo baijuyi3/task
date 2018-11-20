@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.jy.dao.RewardDao">
+    <insert id="saveReward">
+        INSERT into T_REWARD VALUES (REWARD_SEQ.nextval,#{reason},#{money},#{e_id},#{date})
+    </insert>
+    <update id="updateReward">
+        UPDATE T_REWARD SET
+        R_REASON=#{reason},
+        R_money=#{money},
+        R_e_id=#{e_id},
+        r_date=#{date}
+        where r_id =#{id}
+    </update>
+    <select id="getRewardByEid" resultMap="reward1">
+        SELECT * FROM T_REWARD WHERE R_e_id=#{eid}
+    </select>
+    <select id="getRewardById" resultMap="reward1">
+        SELECT * FROM T_REWARD WHERE R_ID=#{id}
+    </select>
+    <select id="getAllReward" resultMap="reward1">
+        SELECT * FROM T_REWARD
+    </select>
+    <select id="getRewardByEidAndTime" resultMap="reward1">
+        SELECT * FROM T_REWARD WHERE R_e_id=#{arg0} and substr(r_date,0,7)=#{arg1}
+    </select>
+
+    <resultMap id="reward1" type="com.jy.model.Reward">
+        <id column="r_id" property="id"/>
+        <result column="r_reason" property="reason"/>
+        <result column="r_money" property="money"/>
+        <result column="r_e_id" property="e_id"/>
+        <result column="r_date" property="date"/>
+    </resultMap>
+</mapper>

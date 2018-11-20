@@ -24,10 +24,12 @@ public class AjaxController {
         User user1=new User();
         user1.setU_name(name);
         User user=userService.getUserByNameAndPass(user1);
+//        System.out.println(user);
         if (user!=null){
-            resp.getWriter().print("n");
+            resp.getWriter().print("该用户名已存在");
+        }else{
+        resp.getWriter().print("可用");
         }
-        resp.getWriter().print("y");
     }
 
 

@@ -112,7 +112,55 @@
 <script>
     $(function () {
        <c:if test="${requestScope.msg!=null}">
-        alert(${requestScope.msg})
+        alert(${requestScope.msg});
+        </c:if>
+    <%--************3级联动****************--%>
+        <c:if test="${requestScope.departments!=null}">
+        var arr=[];
+        <c:if test="${requestScope.positions!=null}">
+        <c:forEach items="${requestScope.departments}" var="k" >
+        arr.push("${k.name}");
+        arr["${k.name}"]=[]; //将元素定义为数组
+        <c:forEach var="j" items="${requestScope.positions}">
+        <c:if test="${j.dp_id==k.id}">
+        arr["${k.name}"].push("${j.name}"); //shuzu[i][j]可以看作是一个二维数组
+        arr["${k.name}"]["${j.name}"]=[];
+        <c:forEach items="${requestScope.employees}" var="l">
+        <c:if test="${l.p_id==j.id}">
+        arr["${k.name}"]["${j.name}"].push("${l.user}");
+        </c:if>
+        </c:forEach>
+        </c:if>
+        </c:forEach>
+        </c:forEach>
+        </c:if>
+        </c:if>
+
+//        console.log(arr);
+        <c:if test="${requestScope.positions!=null}">
+        $.each(arr, function (n,e) {
+            $(".s1").append("<option>" +e + "</option>");
+        });
+        $(".s1").change(function () {
+            $(".s2").html("<option>---请选择---</option>");
+            $.each(arr,function (n,e) {
+                if($(".s1 option:selected").text() == e){
+                    $.each(arr[e],function (n1,e1) {
+                        $(".s2").append("<option>" + e1 + "</option>");
+                    });
+                    $(".s2").change(function () {
+                        $(".s3").html("<option>---请选择---</option>");
+                        $.each(arr[e],function (n1,e1) {
+                            if($(".s2 option:selected").text() == e1){
+                                $.each(arr[e][e1],function (n2,e2) {
+                                    $(".s3").append("<option>" + e2 + "</option>");
+                                });
+                            }
+                        })
+                    })
+                }
+            })
+        })
         </c:if>
     })
 </script>
@@ -125,7 +173,7 @@
                 <p class="right">
                     <a href="/view" >招聘信息</a>
                     <span class="l">|</span>
-                    <a href="/resume">简历信息</a>
+                    <a href="/" >注销</a>
                 </p>
                 <div class="uer">
                     <p class="op">
@@ -138,11 +186,16 @@
 </div>
 <div class="wrap">
     <div class="side">
-        <span><a href="/deliver-1">面试申请</a></span>
+        <span><a href="/deliver_1">面试申请</a></span>
         <span><a href="/deliver_3">员工分配</a></span>
         <span><a href="/recruit">招聘信息</a></span>
         <span><a href="/department">部门</a></span>
         <span><a href="/position">职位</a></span>
+        <span><a href="/employee">员工信息</a></span>
+        <span><a href="/train">培训</a></span>
+        <span><a href="/reward">奖惩</a></span>
+        <span><a href="/recheck">复议</a></span>
+        <span><a href="/account">薪资结算</a></span>
     </div>
     <div class="content">
         <div class="mt">
@@ -159,50 +212,90 @@
                     <li class="l3">人员</li>
                 </ul>
             </div>
-            <c:if test="${requestScope.departments==null}">
-                <span>暂无部门</span>
-            </c:if>
+            <%--<c:if test="${requestScope.departments==null}">--%>
+                <%--<span>暂无部门</span>--%>
+            <%--</c:if>--%>
             <%--****************部门列表****************--%>
-            <c:if test="${requestScope.departments!=null}">
+            <c:if test="${not empty requestScope.departments&&requestScope.show==true}">
                 <div class="rli">
                     <form action="" method="post">
-                    <li class="l1"><select name="dep"></select></li>
-                    <li class="l2"><select name="pos"></select></li>
-                    <li class="l3"><select name="emp"></select></li>
+                    <li class="l1"><select name="dep" class="s1"><option>---请选择---</option></select></li>
+                    <li class="l2"><select name="pos" class="s2"><option>---请选择---</option></select></li>
+                    <li class="l3"><select name="emp" class="s3"><option>---请选择---</option></select></li>
+                    </form>
+                </div>
+                <script>
+                    $(function () {
+                        $("#b1").click(function () {
+                            var href1="/employee_turn?user="+$(".s3").val();
+                            window.location.href=href1;
+                        });
+                        $("#b2").click(function () {
+                            var href1="/employee_change?user="+$(".s3").val();
+                            window.location.href=href1;
+                        });
+                        $("#b3").click(function () {
+                            var href1="/employee_info?user="+$(".s3").val();
+                            window.location.href=href1;
+                        });
+                    })
+                </script>
+                <div class="rli">
+                    <button id="b1">变更状态</button>
+                    <button id="b2">调岗</button>
+                    <button id="b3">查看信息</button>
+                </div>
+            </c:if>
+            <%--****************转正****************--%>
+            <c:if test="${requestScope.employee_turn!=null}">
+                <div class="rli">
+                    <form action="/employee_state" method="post">
+                        <li class="l1"><input type="radio" name="state" value="1">试用期</li>
+                        <li class="l2"><input type="radio" name="state" value="2">正式员工</li>
+                        <li class="l3"><input type="radio" name="state" value="3">离职</li>
+                        <input type="hidden" name="id" value="${requestScope.employee_turn.id}">
+                        <input class="sub" type="submit">
+                        <a class="sub" href="/employee">返回</a>
                     </form>
                 </div>
             </c:if>
             <%--****************换岗****************--%>
-            <c:if test="${employee_c!=null}">
+            <c:if test="${requestScope.employee_change!=null}">
                 <div class="rli">
-                    <form action="/update_department">
-                        <table>
-                            <tr>
-                                <td>部门名称：</td>
-                                <td><input type="text" name="name" value="${requestScope.department_u.name}"></td>
-                                <td></td>
-                                <td></td>
-                            </tr>
-                        </table>
+                    <form action="/employee_pos" method="post">
+                        <li class="l1"><select name="dep" class="s1"><option>---请选择---</option></select></li>
+                        <li class="l2"><select name="pos" class="s2"><option>---请选择---</option></select></li>
+                        <li class="l3"></li>
+                        <input type="hidden" name="id" value="${requestScope.employee_change.id}">
                         <input class="sub" type="submit">
-                        <a class="sub" href="/department">返回</a>
+                        <a class="sub" href="/employee">返回</a>
                     </form>
                 </div>
             </c:if>
-            <%--****************转正****************--%>
-            <c:if test="${employee_1!=null}">
+            <%--****************信息****************--%>
+            <c:if test="${employee_info!=null}">
                 <div class="rli">
-                    <form action="/save_department" method="post">
                         <table>
                             <tr>
-                                <td>部门名称：</td>
-                                <td><input type="text" name="name"></td>
-                                <td></td>
-                                <td></td>
+                                <td>名字(编号)：</td>
+                                <td><input type="text" value="${requestScope.employee_info.user}" disabled></td>
+                                <td>手机</td>
+                                <td><input type="text" value="${requestScope.employee_info.phone}" disabled></td>
+                            </tr>
+                            <tr>
+                                <td>邮件：</td>
+                                <td><input type="text" value="${requestScope.employee_info.mail}" disabled></td>
+                                <td>部门：</td>
+                                <td><input type="text" value="${requestScope.department.name}" disabled></td>
+                            </tr>
+                            <tr>
+                                <td>职位：</td>
+                                <td><input type="text" value="${requestScope.position.name}" disabled></td>
+                                <td>状态：</td>
+                                <td><input type="text" value="${requestScope.employee_info.state}" disabled></td>
                             </tr>
                         </table>
-                        <input class="sub" type="submit">
-                        <a class="sub" href="/department">返回</a>
+                        <a class="sub" href="/employee">返回</a>
                     </form>
                 </div>
             </c:if>

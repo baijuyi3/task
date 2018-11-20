@@ -1,3 +1,5 @@
+<%@ page import="java.text.SimpleDateFormat" %>
+<%@ page import="java.util.Date" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jstl/fmt" %>
 <%--
@@ -11,6 +13,8 @@
 <%
     String path = request.getContextPath();
     String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + path + "/";
+    SimpleDateFormat df=new SimpleDateFormat("yyyy-MM-dd");
+    Date date=new Date();
 %>
 
 <jsp:useBean id="now" class="java.util.Date" scope="page"/>
@@ -129,7 +133,7 @@
                 </table>
             </c:if>
             <input type="hidden" name="rc_id" value="${rc_id}">
-            <input type="hidden" name="date" value="<fmt:formatDate value="${pageContext.now}" pattern="yyyy-MM-dd HH-mm-ss" />">
+            <input type="hidden" name="date" value="<%=df.format(date)%>">
             <input type="hidden" name="rc_name" value="${rc_name}">
                 <input type="submit" value="申请">
             </form>

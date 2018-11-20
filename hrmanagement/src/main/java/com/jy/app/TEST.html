@@ -18,16 +18,57 @@
         }
 
         console.log(shuzu);
+        var db = {
+            腾讯: {
+                LOL: "德玛,EZ瑞尔,剑圣",
+                BNS: "气功师,力士,刺客,气宗师",
+                DNF:"A,B,C,D"
+            },
+            阿里巴巴: {
+                APPLAY: "AL,EZ瑞尔,剑圣",
+                HUABEI: "AL,力士,刺客,气宗师",
+                JIEBEI: "AL,B,C,D"
+            },
+            百度: {
+                ggs: "BD,EZ瑞尔,剑圣",
+                BD: "BD,力士,刺客,气宗师",
+                BDBD: "BD,B,C,D",
+            }
+        };
+        console.log(db);
         var arr = ["上海市","安徽省","江苏省"];
         arr["上海市"]=["徐汇区","静安区","黄浦区"];
         arr["安徽省"]=["合肥市","芜湖市","阜阳市"];
         arr["江苏省"]=["南京市","泰州市","无锡市"];
+        arr["江苏省"]["南京市"]=["1","2","3"];
 
         console.log(arr);
 
+        $.each(arr, function (n,e) {
+            $("#s1").append("<option>" +e + "</option>");
+        })
+        $("#s1").change(function () {
+            $("#s2").html("<option>---请选择---</option>");
+            $.each(arr,function (n,e) {
+                if($("#s1 option:selected").text() == e){
+                    $.each(arr[e],function (n1,e1) {
+                        $("#s2").append("<option>" + e1 + "</option>");
+                    })
+                }
+            })
+        })
     })
 </script>
 <body>
-
+<li class="l3">
+    <select name="d_name" id="s1">
+        <option>---请选择---</option>
+    </select>
+</li>
+<li class="l2">
+    <select name="p_name" id="s2">
+        <option>---请选择---</option>
+    </select>
+</li>
 </body>
 </html>

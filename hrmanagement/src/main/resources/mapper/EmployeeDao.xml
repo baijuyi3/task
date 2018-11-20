@@ -4,7 +4,7 @@
     <insert id="saveEmployee">
         INSERT into T_EMPLOYEE VALUES (EMPLOYEE_SEQ.nextval,#{name},
         #{pass},#{sex},#{phone},#{mail},#{d_id},#{p_id},
-        #{user,jdbcType=VARCHAR},#{salary},#{reward,jdbcType=Number},#{state},#{u_id})
+        #{user,jdbcType=VARCHAR},#{salary},#{reward,jdbcType=NUMERIC},#{state},#{u_id})
     </insert>
     <update id="updateEmployee">
         UPDATE T_EMPLOYEE SET
@@ -26,7 +26,7 @@
         DELETE FROM T_EMPLOYEE WHERE E_ID=#{id}
     </delete>
     <select id="getAllEmployee" resultMap="employee1">
-        SELECT * FROM T_EMPLOYEE
+        SELECT * FROM T_EMPLOYEE ORDER BY E_ID
     </select>
     <select id="getEmployeeById" resultMap="employee1">
         SELECT * FROM T_EMPLOYEE WHERE E_ID=#{id}
@@ -36,6 +36,9 @@
     </select>
     <select id="getEmployeeByUid" resultMap="employee1">
         SELECT * FROM T_EMPLOYEE WHERE E_U_ID=#{uid}
+    </select>
+    <select id="getEmployeeByDid" resultMap="employee1">
+        SELECT * FROM T_EMPLOYEE WHERE E_D_ID=#{did}
     </select>
 
     <resultMap id="employee1" type="com.jy.model.Employee">
@@ -50,5 +53,7 @@
         <result property="user" column="e_user"/>
         <result property="salary" column="e_salary"/>
         <result property="reward" column="e_reward"/>
+        <result property="state" column="e_state"/>
+        <result property="u_id" column="e_u_id"/>
     </resultMap>
 </mapper>

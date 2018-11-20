@@ -24,6 +24,8 @@ public class PositionController {
     @RequestMapping("/position")//查询
     public String position(Model model)throws Exception{
         List<Position> positions=adminService.getAllPosition();
+        List<Department> departments=adminService.getAllDepartment();
+        model.addAttribute("departments",departments);
         model.addAttribute("positions",positions);
         return "admin_view/position";
     }
@@ -37,7 +39,7 @@ public class PositionController {
         return "admin_view/position";
     }
 
-    @RequestMapping("/save_department")
+    @RequestMapping("/save_position")
     public String save_position(Position position,Model model)throws Exception{
         boolean res=adminService.savePosition(position);
         if(!res){
